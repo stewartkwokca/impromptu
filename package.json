@@ -1,0 +1,14 @@
+{
+  "name": "impromptu",
+  "version": "1.0.0",
+  "description": "CS 35L Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Chinmay Devadhar, Jacob Young, Steven Pan, Kevin Zhao, Stewart Kwok",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
