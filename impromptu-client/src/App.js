@@ -1,7 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
-
+import axios from 'axios';
 import React, { useState, useEffect } from 'react'
+
+const api_url = "http://localhost:8000";
 
 function App() {
   return (
@@ -11,7 +13,7 @@ function App() {
        <FillInAnimation/>
       </div>
       <Spacer size="50px" />
-      <form action="https://localhost:3000/prompt" method="post">
+      <form action="https://localhost:8000/prompt" method="post">
         <button type="submit">start playing!</button>
       </form>
     </div>
@@ -25,18 +27,26 @@ function Spacer({ size = '20px' }) {
 
 function FillInAnimation(){
   const [displayText, setDisplayText] = useState("");
-  const responses = ["the gambling site for children", 
-                      "it's like github for lesbians", 
-                      "the child of myspace and wordle",
-                       "as good as napster for the deaf"]
+  const [responses, setResponses] = useState([]);
   const [index, setIndex] = useState(0);
   const [currStr, setCurrStr] = useState(0);
   const [deleting, setDeleting] = useState(false)
-  const [delay, setDelay] = useState(100)
+  const [delay, setDelay] = useState(100);
+
+  useEffect(() => {
+    //send request
+    axios.get(`${api_url}/landing/animation`).then((res, err) => {
+      console.log(res);
+      setResponses(res.data.responses);
+    }).catch((err) => {
+      console.log(err);
+    })
+  }, [])
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      if (deleting){
+      if (responses.length==0) return;
+      if (deleting) {
         if (index===0){
         setDeleting(false)
         setDelay(600)

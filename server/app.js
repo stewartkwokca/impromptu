@@ -8,6 +8,7 @@ const voteRoute = require("./routes/vote");
 const scoreboardRoute = require("./routes/scoreboard");
 const promptRoute = require("./routes/prompt");
 const loginRoute = require("./routes/login");
+const landingRoute = require("./routes/landing");
 
 // app and app setup
 const app = express();
@@ -23,6 +24,7 @@ app.use("/vote", voteRoute);
 app.use('/scoreboard', scoreboardRoute);
 app.use("/prompt", promptRoute);
 app.use("/login", loginRoute);
+app.use("/landing", landingRoute);
 
 // start app
-app.listen("3000", () => console.log("Server started on port 3000"));
+app.listen("8000", () => console.log("Server started on port 8000"));
