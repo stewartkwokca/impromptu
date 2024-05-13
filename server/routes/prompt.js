@@ -6,7 +6,11 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-    return res.redirect("/");
+    // once authentication added, redirect to scoreboard if player has voted
+    if (false){
+        res.redirect("/scoreboard");
+    }
+    return res.redirect("/prompt");
 });
 
 module.exports = router;

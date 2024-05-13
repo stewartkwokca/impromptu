@@ -6,7 +6,7 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-    return res.redirect("/");
+    return res.redirect("/vote");
 });
 
 module.exports = router;

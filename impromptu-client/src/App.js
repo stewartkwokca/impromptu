@@ -11,7 +11,9 @@ function App() {
        <FillInAnimation/>
       </div>
       <Spacer size="50px" />
-      <button>start playing! </button>
+      <form action="https://localhost:3000/prompt" method="post">
+        <button type="submit">start playing!</button>
+      </form>
     </div>
   );
 }
