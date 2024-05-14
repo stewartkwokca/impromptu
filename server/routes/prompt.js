@@ -10,7 +10,7 @@ router.post("/", (req, res) => {
     if (false){
         res.redirect("/scoreboard");
     }
-    return res.redirect("/prompt");
+    return res.json({"success" : true});
 });
 
 module.exports = router;
