@@ -32,9 +32,9 @@ function MainPage() {
   return (
     <div className="MainPage">
       <div className = "grid-center-container">
-        <h1 className="text-3xl font-bold">Welcome to imPROMPTu</h1>
+        <h1 className="text-3xl font-bold mb-6">Welcome to imPROMPTu</h1>
         <FillInAnimation/>
-        <Spacer size="30px" />
+        <Spacer size="10px" />
         <form action="http://localhost:8000/prompt" method="post">
           <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">start playing!</button>
         </form>
