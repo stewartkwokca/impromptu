@@ -30,7 +30,7 @@ function MainPage() {
   return (
     <div className="MainPage">
       <div className = "grid-center-container">
-        <h1>Welcome to imPROMPTtu</h1>
+        <h1>Welcome to imPROMPTu</h1>
         <FillInAnimation/>
         <Spacer size="50px" />
         <form action="http://localhost:8000/prompt" method="post">
