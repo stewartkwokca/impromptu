@@ -24,6 +24,7 @@ code {
   border-radius: 4px; /* Slightly rounded corners */
   font-size: 1rem; /* Ensure consistent text size */
   text-align: left;
+  color: rgb(51, 65, 85);
 }
 
 .grid-center-container {
