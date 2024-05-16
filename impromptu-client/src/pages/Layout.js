@@ -3,7 +3,7 @@ import { Outlet, Link } from "react-router-dom";
 const Layout = () => {
   return (
     <>
-      <nav class="flex items-center justify-between flex-wrap bg-slate-700 p-6 hover:bg-slate-600 mb-10">
+      <nav class="flex items-center justify-between flex-wrap bg-slate-700 p-6 hover:bg-gray-600 mb-10">
         <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
           <div class="text-sm lg:flex-grow">
             <Link to="/prompt" class="block mt-4 text-lg font-bold lg:inline-block lg:mt-0 text-sky-300 hover:text-white mr-4">

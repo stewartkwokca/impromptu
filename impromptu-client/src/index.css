@@ -29,4 +29,14 @@ code {
 .grid-center-container {
   display: grid;
   place-items: center; /* Centers content horizontally and vertically */
-  }
+}
+
+:root {
+  --foreground-rgb: 203, 213, 225;
+  --background-rgb: 51, 65, 85;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+}
