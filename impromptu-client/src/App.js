@@ -2,20 +2,41 @@ import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react'
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "./pages/Layout";
+import Vote from "./pages/Vote";
+import Prompt from "./pages/Prompt";
+import Scoreboard from "./pages/Scoreboard";
 
 const api_url = "http://localhost:8000";
 
-function App() {
+function App(){
   return (
-    <div className="App">
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<><Layout /></>}>
+          <Route index element={<MainPage />}/>
+          <Route path="vote" element={<Vote />}/>
+          <Route path="prompt" element={<Prompt />} />
+          <Route path="scoreboard" element={<Scoreboard />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  )
+}
+
+function MainPage() {
+  return (
+    <div className="MainPage">
       <div className = "grid-center-container">
-       <h1>Welcome to imPROMPTtu</h1>
-       <FillInAnimation/>
+        <h1>Welcome to imPROMPTtu</h1>
+        <FillInAnimation/>
+        <Spacer size="50px" />
+        <form action="http://localhost:8000/prompt" method="post">
+          <button type="submit">start playing!</button>
+        </form>
       </div>
-      <Spacer size="50px" />
-      <form action="http://localhost:8000/prompt" method="post">
-        <button type="submit">start playing!</button>
-      </form>
     </div>
   );
 }
