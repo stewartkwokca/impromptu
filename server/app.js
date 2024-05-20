@@ -1,6 +1,7 @@
 // required dependencies
 const express = require("express");
 const cors = require("cors");
+const mongoose = require('mongoose');
 
 // routes
 const profileRoute = require("./routes/profile");
@@ -26,5 +27,11 @@ app.use("/prompt", promptRoute);
 app.use("/login", loginRoute);
 app.use("/landing", landingRoute);
 
+
+
 // start app
-app.listen("8000", () => console.log("Server started on port 8000"));
+mongoose.connect(process.env.MONGO_URL)
+    .then(
+        app.listen("8000", () => console.log("Server started on port 8000"))
+    )
+    .catch(err => console.log(err));
