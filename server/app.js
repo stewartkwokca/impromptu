@@ -27,9 +27,7 @@ app.use("/prompt", promptRoute);
 app.use("/login", loginRoute);
 app.use("/landing", landingRoute);
 
-
-
-// start app
+// start app, only if connection made
 mongoose.connect(process.env.MONGO_URL)
     .then(
         app.listen("8000", () => console.log("Server started on port 8000"))

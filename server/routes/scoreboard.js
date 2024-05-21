@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const ResponseModel = require("../models/responseModel.js");
+const Response = require("../models/responseModel.js");
 
-let limit = 1; // change to show different number of responses on scoreboard
+let limit = 10; // change to show different number of responses on scoreboard
 
 router.get("/", async (req, res) => {
-    const responses = await ResponseModel.find().sort({votes: -1}).limit(limit);
+    const responses = await Response.find().sort({votes: -1}).limit(limit);
     return res.json({responses: responses});
 });
 
