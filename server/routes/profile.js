@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get("/:username", async (req, res) => {
 
-    const user = await UserModel.findOne({username: req.params.username});å
+    const user = await UserModel.findOne({username: req.params.username});
 
     if (req.session.username){
         return res.json({current_user: req.session.username == req.params.username, queried_user: user});
