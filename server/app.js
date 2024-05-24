@@ -4,6 +4,7 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require('mongoose');
 const session = require('express-session');
+var schedule = require('node-schedule');
 
 // routes
 const profileRoute = require("./routes/profile");
@@ -13,6 +14,9 @@ const promptRoute = require("./routes/prompt");
 const loginRoute = require("./routes/login");
 const signupRoute = require("./routes/signup");
 const landingRoute = require("./routes/landing");
+
+// for accessing user's database daily
+const User = require("./models/userModel");
 
 // app and app setup
 const app = express();
@@ -38,7 +42,12 @@ app.use("/landing", landingRoute);
 
 // start app, only if connection made
 mongoose.connect(process.env.MONGO_URL)
-    .then(
-        app.listen("8000", () => console.log("Server started on port 8000"))
+    .then(async () => {
+            schedule.scheduleJob({hour: 0, minute: 0}, async () => { // reset users' daily submission status at midnight PST
+                await User.updateMany({}, {"submitted": false});
+            });
+
+            app.listen("8000", () => console.log("Server started on port 8000"));
+        }
     )
-    .catch(err => console.log(err));
+    .catch((err) => console.log(err));
