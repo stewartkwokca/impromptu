@@ -29,7 +29,7 @@ const Scoreboard = () => {
             <div className="place-content-center">
                 <h1 className="text-2xl font-bold text-center mb-10">Scoreboard</h1>
             </div>
-            <div className="mx-20 grid grid-cols-2 gap-4 flex">
+            <div className="mx-20 grid grid-cols-1 gap-4 flex">
                 {renderItems}
             </div>
         </div>
