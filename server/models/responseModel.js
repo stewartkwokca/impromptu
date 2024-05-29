@@ -13,6 +13,10 @@ const responsesSchema = mongoose.Schema(
         votes: {
             type: Number,
             required: true
+        },
+        views: {
+            type: Number,
+            required: true
         }
     },
     { timestamps: true}
