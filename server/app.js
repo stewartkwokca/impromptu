@@ -15,6 +15,7 @@ const promptRoute = require("./routes/prompt");
 const loginRoute = require("./routes/login");
 const signupRoute = require("./routes/signup");
 const landingRoute = require("./routes/landing");
+const feedRoute = require("./routes/feed");
 
 // for accessing daily actions
 const User = require("./models/userModel");
@@ -41,6 +42,7 @@ app.use("/prompt", promptRoute);
 app.use("/login", loginRoute);
 app.use("/signup", signupRoute);
 app.use("/landing", landingRoute);
+app.use("/feed", feedRoute);
 
 // start app, only if connection made
 mongoose.connect(process.env.MONGO_URL)
