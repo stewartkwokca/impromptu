@@ -2,27 +2,19 @@ const express = require("express");
 const router = express.Router();
 const Response = require("../models/responseModel.js");
 const User = require('../models/userModel');
-const { GoogleGenerativeAI } = require("@google/generative-ai");
+const Prompt = require('../models/promptModel');
 
 router.get("/", async (req, res) => {
-    try{
-        const googleGenAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-        const prompt_generator = googleGenAI.getGenerativeModel({ model: "gemini-pro"});
-
-        const input = "Please generate a unique prompt in the style of the popoular jackbox game quiplash. Please only return the prompt with no other text. Keep it PG-13. Make it a fill-in-the-blank."
-        const result = await prompt_generator.generateContent(input);
-        const response = await result.response;
-        const prompt = response.text();
-
-        return res.json({"prompt": prompt});
-    } catch (err) {
-        console.log(err);
-        return res.redirect("/prompt");
-    }
+    const today = new Date();
+    const mm = today.getMonth()+1;
+    const dd = today.getDate();
+    const yyyy = today.getFullYear();
+    const prompt = await Prompt.findOne({createdAt: { "$gte": `${yyyy}-${mm}-${dd}` }})
+    return res.json(prompt);
 });
 
 router.post("/", (req, res) => { // submit to a prompt
-    // once authentication added, redirect to scoreboard if player has voted
+    // once authentication added, redirect to scoreboard if player has submitted
     if (req.session.submitted){
         res.redirect("/scoreboard");
     }
