@@ -64,8 +64,7 @@ const Prompt = () => {
             </div>
             <div id="editor" 
                  contentEditable="true" 
-                 dangerouslySetInnerHTML={{__html: editorContent}}
-                 onInput={(e) => setEditorContent(e.currentTarget.innerHTML)}
+                 onInput={(e) => setEditorContent(e.target.value)}
                  style={{border: "1px solid #ccc", minHeight: "300px", padding: "10px"}}>
             </div>
             {/* Inline CSS for simplicity */}
