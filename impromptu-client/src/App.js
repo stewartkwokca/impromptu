@@ -21,7 +21,7 @@ function App(){
           <Route path="vote" element={<Vote />}/>
           <Route path="prompt" element={<Prompt />} />
           <Route path="scoreboard" element={<Scoreboard />} />
-          <Route path="login" element={<Scoreboard />} />
+          <Route path="login" element={<Login />} />
         </Route>
       </Routes>
     </BrowserRouter>
