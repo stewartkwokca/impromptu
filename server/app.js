@@ -30,7 +30,7 @@ app.use(session({
     cookie: { secure: false }
 }))
 app.use(express.json());
-app.use(cors());
+app.use(cors({credentials: true, origin: "http://localhost:3000"}));
 
 app.get("/", (req, res) => {
     res.send("Hello World");

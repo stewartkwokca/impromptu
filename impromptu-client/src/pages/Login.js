@@ -71,7 +71,7 @@ function LoginPrompt({handleLogin, passUsername}){
     if (isLogin) {
       // Handle login
       console.log('Logging in with', {username, password});
-      axios.post(`${api_url}/login`,{username, password}).then((res, err) => {
+      axios.post(`${api_url}/login`,{username, password}, {withCredentials: true}).then((res, err) => {
         console.log(res);
         handleLogin(1)
         passUsername(username)
@@ -84,7 +84,7 @@ function LoginPrompt({handleLogin, passUsername}){
       // Handle account creation
       const creds = {email, username, password }
       console.log('Creating account with', creds);
-      axios.post(`${api_url}/signup`, creds).then((res, err) => {
+      axios.post(`${api_url}/signup`, creds, {withCredentials: true}).then((res, err) => {
         console.log(res);
         handleLogin(2)
         passUsername(username)
