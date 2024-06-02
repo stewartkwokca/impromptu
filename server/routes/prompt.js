@@ -3,18 +3,22 @@ const router = express.Router();
 const Response = require("../models/responseModel.js");
 const User = require('../models/userModel');
 const Prompt = require('../models/promptModel');
+const {generatePrompt} = require("../promptGenerator.js");
 
 router.get("/", async (req, res) => {
     const today = new Date();
     const mm = today.getMonth()+1;
     const dd = today.getDate();
     const yyyy = today.getFullYear();
-    const prompt = await Prompt.findOne({createdAt: { "$gte": `${yyyy}-${mm}-${dd}` }})
+    let prompt = await Prompt.findOne({createdAt: { "$gte": `${yyyy}-${mm}-${dd}` }});
+    if (!prompt){
+       prompt = await generatePrompt();
+    }
     return res.json(prompt);
 });
 
-router.post("/", (req, res) => { // submit to a prompt
-    // once authentication added, redirect to scoreboard if player has submitted
+router.post("/", (req, res) => {
+
     if (req.session.submitted){
         res.redirect("/scoreboard");
     }
