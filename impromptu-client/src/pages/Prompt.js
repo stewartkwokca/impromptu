@@ -27,6 +27,19 @@ const Prompt = ({user}) => {
         setCharCount(content.length);
     }
 
+    const handleSubmit = () => {
+        axios.post(`${api_url}/submit`, {
+            content: editorContent
+        })
+        .then(response => {
+            console.log('Data submitted successfully:', response.data);
+            // Perform additional actions based on the response, if needed
+        })
+        .catch(error => {
+            console.error('There was an error submitting the data!', error);
+        });
+    };
+
     return (
         <div className="center">
             <div className="place-content-center">
@@ -72,6 +85,11 @@ const Prompt = ({user}) => {
                     padding: 10px;
                 }
             `}</style>
+            <form onSubmit={handleSubmit} style={{ textAlign: "center", marginTop: "10px" }}>
+                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">
+                    Submit
+                </button>
+            </form>
         </div>
     );
 }
