@@ -22,16 +22,9 @@ const Prompt = () => {
     }
 
     const handleInput = (e) => {
-        const content = e.currentTarget.innerText;
-        if (content.length > 135){
-            const ts = e.target.value.slice(0, 135);
-            setEditorContent(ts);
-            setCharCount(135)
-        }
-        else{
-            setEditorContent(e.target.value);
-            setCharCount(content.length);
-        }
+        const content = e.currentTarget.innerHTML;
+        setEditorContent(e.target.value);
+        setCharCount(content.length);
     }
 
     return (
