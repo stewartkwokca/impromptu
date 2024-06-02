@@ -4,7 +4,7 @@ import '../App.css';
 import { Link, redirect, useNavigate} from 'react-router-dom';
 const api_url = "http://localhost:8000";
 
-function Login({user}) {
+function Login({user, setUser}) {
     const [loginState, setLoginState] = useState(0);
     const [username, setUsername] = useState("");
     const navigate = useNavigate();
@@ -19,7 +19,7 @@ function Login({user}) {
     function renderLoginPage(){
         switch (loginState) {
             case 0:
-                return <div><LoginPrompt handleLogin={setLoginState} passUsername={setUsername}/></div>
+                return <div><LoginPrompt handleLogin={setLoginState} passUsername={setUsername} setUser={setUser}/></div>
             case 1:
                 return <div><WelcomePage username={username}/></div>
             case 2:
@@ -59,7 +59,7 @@ function SignUpThankYouPage({ username }) {
     );
   }
 
-function LoginPrompt({handleLogin, passUsername}){
+function LoginPrompt({handleLogin, passUsername, setUser}){
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -82,6 +82,7 @@ function LoginPrompt({handleLogin, passUsername}){
       console.log('Logging in with', {username, password});
       axios.post(`${api_url}/login`,{username, password}, {withCredentials: true}).then((res, err) => {
         console.log(res);
+        setUser(res.data.user);
         handleLogin(1)
         passUsername(username)
       }).catch((err) => {
@@ -96,6 +97,7 @@ function LoginPrompt({handleLogin, passUsername}){
       axios.post(`${api_url}/signup`, creds, {withCredentials: true}).then((res, err) => {
         console.log(res);
         handleLogin(2)
+        setUser(res.data.user);
         passUsername(username)
       }).catch((err) => {
         console.log(err);

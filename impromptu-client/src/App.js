@@ -30,7 +30,7 @@ function App(){
           <Route path="vote" element={<Vote user={user}/>}/>
           <Route path="prompt" element={<Prompt user={user}/>} />
           <Route path="scoreboard" element={<Scoreboard user={user}/>} />
-          <Route path="login" element={<Login user={user}/>} />
+          <Route path="login" element={<Login user={user} setUser={setUser}/>} />
         </Route>
       </Routes>
     </BrowserRouter>
