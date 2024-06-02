@@ -16,8 +16,8 @@ function App(){
   const [user, setUser] = useState(null);
   useEffect(() => {
     axios.get(`${api_url}/login`, {withCredentials: true}).then((res) => {
-      console.log(res);
-      setUser(res.data);
+      console.log(res.data);
+      if (!("error" in res.data)) setUser(res.data);
     }).catch((err) => {
       console.log(err);
     })
@@ -25,11 +25,11 @@ function App(){
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<><Layout /></>}>
+        <Route path="/" element={<><Layout user={user}/></>}>
           <Route index element={<MainPage />}/>
-          <Route path="vote" element={<Vote />}/>
-          <Route path="prompt" element={<Prompt />} />
-          <Route path="scoreboard" element={<Scoreboard />} />
+          <Route path="vote" element={<Vote user={user}/>}/>
+          <Route path="prompt" element={<Prompt user={user}/>} />
+          <Route path="scoreboard" element={<Scoreboard user={user}/>} />
           <Route path="login" element={<Login user={user}/>} />
         </Route>
       </Routes>

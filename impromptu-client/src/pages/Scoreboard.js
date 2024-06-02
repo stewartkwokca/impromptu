@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 const api_url = "http://localhost:8000";
 
-const Scoreboard = () => {
+const Scoreboard = ({user}) => {
     const [tops, setTops] = useState([]);
 
     useEffect(() => {
