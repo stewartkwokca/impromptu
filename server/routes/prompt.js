@@ -12,10 +12,32 @@ router.get("/", async (req, res) => {
     const yyyy = today.getFullYear();
     let prompt = await Prompt.findOne({createdAt: { "$gte": `${yyyy}-${mm}-${dd}` }});
     if (!prompt){
-       prompt = await generatePrompt();
+       prompt = await generatePrompt({createdAt: { "$gte": `${yyyy}-${mm}-${dd}` }});
     }
     return res.json(prompt);
 });
+
+router.get("/:date", async (req, res) => { // date should be in yyyymmdd format
+    const dateQueried = new Date(req.params.date.substring(0, 4), Number(req.params.date.substring(4, 6))-1, req.params.date.substring(6));
+    const nextDate = new Date(req.params.date.substring(0, 4), Number(req.params.date.substring(4, 6))-1, req.params.date.substring(6));
+    nextDate.setDate(dateQueried.getDate()+1);
+
+    const startMM = dateQueried.getMonth()+1;
+    const startDD = dateQueried.getDate();
+    const startYYYY = dateQueried.getFullYear();
+
+    const endMM = nextDate.getMonth()+1;
+    const endDD = nextDate.getDate();
+    const endYYYY = nextDate.getFullYear();
+
+    const filter = {createdAt: { "$gte": `${startYYYY}-${startMM}-${startDD}`, "$lt": `${endYYYY}-${endMM}-${endDD}`}};
+    const prompt = await Prompt.findOne(filter);
+
+    if (!prompt){
+        return res.status(404).send("Requested prompt not found");
+    }
+    return res.json(prompt);
+})
 
 router.post("/", (req, res) => {
 
