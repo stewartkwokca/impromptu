@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 const api_url = "http://localhost:8000"
 
 
-const Vote = () => {
+const Vote = ({user}) => {
     const [feed, setFeed] = useState([]);
     const [prompt, setPrompt] = useState("");
 
@@ -15,7 +15,7 @@ const Vote = () => {
         }).catch((err) => {
             console.log(err)
         })
-    })
+    }, [])
 
     useEffect(() => {
         axios.get(`${api_url}/prompt`).then((res, err) => {
@@ -24,7 +24,7 @@ const Vote = () => {
         }).catch((err) => {
             console.log(err)
         })
-    })
+    }, [])
 
 
 

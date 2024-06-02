@@ -6,7 +6,7 @@ const User = require('../models/userModel');
 router.get("/", (req, res) => {
     console.log(req.session);
     if (req.session.userID) {
-        res.status(200).send({"User": req.session.userID});
+        res.status(200).send({"userID": req.session.userID, "username": req.session.username});
         return;
     }
     else {
@@ -35,7 +35,7 @@ router.post("/", async(req, res) => {
     req.session['userID'] = user._id.toString();
     req.session['username'] = user.username;
     req.session['submitted'] = user.submitted;
-    return res.send({"success": true, "message": "Logged in"});
+    return res.send({"success": true, "user" : {"userID": user._id.toString(), "username": user.username}});
 });
 
 module.exports = router;

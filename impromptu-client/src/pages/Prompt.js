@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 const api_url = "http://localhost:8000";
 
-const Prompt = () => {
+const Prompt = ({user}) => {
     const [prompt, setPrompt] = useState("");
     const [editorContent, setEditorContent] = useState("Start editing...");
     const [charCount, setCharCount] = useState(0);

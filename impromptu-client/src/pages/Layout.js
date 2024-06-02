@@ -1,6 +1,6 @@
 import { Outlet, Link } from "react-router-dom";
 
-const Layout = () => {
+const Layout = ({user}) => {
   return (
     <>
       <nav class="flex items-center justify-between flex-wrap bg-sky-800 p-6 mb-10">
@@ -17,7 +17,8 @@ const Layout = () => {
             </Link>
           </div>
           <div>
-            <Link to="/login" class="inline-block text-lg px-4 py-2 leading-none border rounded text-white border-sky-300 hover:border-transparent hover:text-sky-500 hover:bg-slate-200 mt-4 lg:mt-0">Login</Link>
+
+            <Link to={user==null ? "/login" : "/profile"} class="inline-block text-lg px-4 py-2 leading-none border rounded text-white border-sky-300 hover:border-transparent hover:text-sky-500 hover:bg-slate-200 mt-4 lg:mt-0">{user==null ? "Login": "Profile"}</Link>
           </div>
         </div>
       </nav>

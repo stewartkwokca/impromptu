@@ -3,18 +3,44 @@ const router = express.Router();
 const Response = require("../models/responseModel.js");
 const User = require('../models/userModel');
 const Prompt = require('../models/promptModel');
+const {generatePrompt} = require("../promptGenerator.js");
 
 router.get("/", async (req, res) => {
     const today = new Date();
     const mm = today.getMonth()+1;
     const dd = today.getDate();
     const yyyy = today.getFullYear();
-    const prompt = await Prompt.findOne({createdAt: { "$gte": `${yyyy}-${mm}-${dd}` }})
+    let prompt = await Prompt.findOne({createdAt: { "$gte": `${yyyy}-${mm}-${dd}` }});
+    if (!prompt){
+       prompt = await generatePrompt({createdAt: { "$gte": `${yyyy}-${mm}-${dd}` }});
+    }
     return res.json(prompt);
 });
 
-router.post("/", (req, res) => { // submit to a prompt
-    // once authentication added, redirect to scoreboard if player has submitted
+router.get("/:date", async (req, res) => { // date should be in yyyymmdd format
+    const dateQueried = new Date(req.params.date.substring(0, 4), Number(req.params.date.substring(4, 6))-1, req.params.date.substring(6));
+    const nextDate = new Date(req.params.date.substring(0, 4), Number(req.params.date.substring(4, 6))-1, req.params.date.substring(6));
+    nextDate.setDate(dateQueried.getDate()+1);
+
+    const startMM = dateQueried.getMonth()+1;
+    const startDD = dateQueried.getDate();
+    const startYYYY = dateQueried.getFullYear();
+
+    const endMM = nextDate.getMonth()+1;
+    const endDD = nextDate.getDate();
+    const endYYYY = nextDate.getFullYear();
+
+    const filter = {createdAt: { "$gte": `${startYYYY}-${startMM}-${startDD}`, "$lt": `${endYYYY}-${endMM}-${endDD}`}};
+    const prompt = await Prompt.findOne(filter);
+
+    if (!prompt){
+        return res.status(404).send("Requested prompt not found");
+    }
+    return res.json(prompt);
+})
+
+router.post("/", (req, res) => {
+
     if (req.session.submitted){
         res.redirect("/scoreboard");
     }
@@ -39,11 +65,23 @@ router.post("/submit", async (req, res) => { // submit to a prompt
         return res.redirect("/login");
     }
 
+    const today = new Date();
+    const mm = today.getMonth()+1;
+    const dd = today.getDate();
+    const yyyy = today.getFullYear();
+
+    let prompt = await Prompt.findOne({createdAt: { "$gte": `${yyyy}-${mm}-${dd}` }});
+    if (!prompt) {
+        return res.status(500).redirect("/");
+    }
+
     const newResponse = {
         votes: 0,
         views: 0,
         user: req.body.user,
-        response: req.body.text
+        response: req.body.text,
+        promptID: prompt._id,
+        promptText: prompt.text
     }
 
     const response = await Response.create(newResponse);

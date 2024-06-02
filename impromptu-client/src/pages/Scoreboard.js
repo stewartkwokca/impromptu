@@ -3,8 +3,18 @@ import React, { useState, useEffect } from 'react';
 
 const api_url = "http://localhost:8000";
 
-const Scoreboard = () => {
+const Scoreboard = ({user}) => {
     const [tops, setTops] = useState([]);
+    const [prompt, setPrompt] = useState("");
+
+    useEffect(() => {
+        axios.get(`${api_url}/prompt`).then((res, err) => {
+            console.log(res);
+            setPrompt(res.data.text);
+        }).catch((err) => {
+                console.log(err);
+            })
+    }, [])
 
     useEffect(() => {
         axios.get(`${api_url}/scoreboard`).then((res, err) => {
@@ -27,7 +37,8 @@ const Scoreboard = () => {
     return (
         <div className="center">
             <div className="place-content-center">
-                <h1 className="text-2xl font-bold text-center mb-10">Scoreboard</h1>
+                <h1 className="text-2xl font-bold text-center mb-4">Scoreboard</h1>
+                <p className="text-lg text-center mb-10">{prompt}</p>
             </div>
             <div className="mx-20 grid grid-cols-1 gap-4 flex">
                 {renderItems}
