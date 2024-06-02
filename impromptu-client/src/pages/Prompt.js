@@ -17,18 +17,6 @@ const Prompt = () => {
             })
     }, [])
 
-
-    const formatText = (command, value = null) => {
-        document.execCommand(command, false, value);
-    }
-
-    const insertImage = () => {
-        const url = prompt('Enter the image URL:');
-        if (url) {
-            document.execCommand('insertImage', false, url);
-        }
-    }
-
     const handleInput = (e) => {
         const content = e.currentTarget.innerHTML;
         setEditorContent(content);
@@ -51,9 +39,9 @@ const Prompt = () => {
             <div style={{ position: "relative" }}>
                 <div id="editor"
                     contentEditable="true"
-                    dangerouslySetInnerHTML={{ __html: editorContent }}
                     onInput={handleInput}
                     style={{ border: "1px solid #ccc", minHeight: "300px", padding: "10px" }}>
+                    {editorContent}
                 </div>
                 <div style={{
                     position: "absolute",
