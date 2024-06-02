@@ -17,10 +17,21 @@ const Prompt = () => {
             })
     }, [])
 
+    const formatText = (command, value = null) => {
+        document.execCommand(command, false, value);
+    }
+
     const handleInput = (e) => {
-        const content = e.currentTarget.innerHTML;
-        setEditorContent(content);
-        setCharCount(content.length);
+        const content = e.currentTarget.innerText;
+        if (content.length > 135){
+            const ts = e.target.value.slice(0, 135);
+            setEditorContent(ts);
+            setCharCount(135)
+        }
+        else{
+            setEditorContent(e.target.value);
+            setCharCount(content.length);
+        }
     }
 
     return (
@@ -41,7 +52,6 @@ const Prompt = () => {
                     contentEditable="true"
                     onInput={handleInput}
                     style={{ border: "1px solid #ccc", minHeight: "300px", padding: "10px" }}>
-                    {editorContent}
                 </div>
                 <div style={{
                     position: "absolute",
