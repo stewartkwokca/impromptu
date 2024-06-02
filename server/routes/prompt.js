@@ -65,11 +65,23 @@ router.post("/submit", async (req, res) => { // submit to a prompt
         return res.redirect("/login");
     }
 
+    const today = new Date();
+    const mm = today.getMonth()+1;
+    const dd = today.getDate();
+    const yyyy = today.getFullYear();
+
+    let prompt = await Prompt.findOne({createdAt: { "$gte": `${yyyy}-${mm}-${dd}` }});
+    if (!prompt) {
+        return res.status(500).redirect("/");
+    }
+
     const newResponse = {
         votes: 0,
         views: 0,
         user: req.body.user,
-        response: req.body.text
+        response: req.body.text,
+        promptID: prompt._id,
+        promptText: prompt.text
     }
 
     const response = await Response.create(newResponse);

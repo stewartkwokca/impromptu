@@ -17,6 +17,14 @@ const responsesSchema = mongoose.Schema(
         views: {
             type: Number,
             required: true
+        },
+        promptID: {
+            type: String,
+            required: true
+        },
+        promptText: {
+            type: String,
+            required: true
         }
     },
     { timestamps: true}
