@@ -1,12 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 import '../App.css';
-import { Link } from 'react-router-dom';
+import { Link, redirect, useNavigate} from 'react-router-dom';
 const api_url = "http://localhost:8000";
 
-function Login(){
-    const [loginState, setLoginState] = useState(0)
-    const [username, setUsername] = useState("")
+function Login({user}) {
+    const [loginState, setLoginState] = useState(0);
+    const [username, setUsername] = useState("");
+    const navigate = useNavigate();
+    
+    useEffect(() => {
+      if (user) {
+        console.log(user);
+        navigate("/");
+      }
+    }, [])
+   
     function renderLoginPage(){
         switch (loginState) {
             case 0:

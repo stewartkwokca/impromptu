@@ -13,6 +13,15 @@ import Login from "./pages/Login";
 const api_url = "http://localhost:8000";
 
 function App(){
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    axios.get(`${api_url}/login`, {withCredentials: true}).then((res) => {
+      console.log(res);
+      setUser(res.data);
+    }).catch((err) => {
+      console.log(err);
+    })
+  }, [])
   return (
     <BrowserRouter>
       <Routes>
@@ -21,7 +30,7 @@ function App(){
           <Route path="vote" element={<Vote />}/>
           <Route path="prompt" element={<Prompt />} />
           <Route path="scoreboard" element={<Scoreboard />} />
-          <Route path="login" element={<Login />} />
+          <Route path="login" element={<Login user={user}/>} />
         </Route>
       </Routes>
     </BrowserRouter>
