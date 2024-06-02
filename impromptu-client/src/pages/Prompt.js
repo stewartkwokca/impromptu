@@ -6,6 +6,7 @@ const api_url = "http://localhost:8000";
 const Prompt = () => {
     const [prompt, setPrompt] = useState("");
     const [editorContent, setEditorContent] = useState("Start editing...");
+    const [charCount, setCharCount] = useState(0);
 
     useEffect(() => {
         axios.get(`${api_url}/prompt`).then((res, err) => {
@@ -28,6 +29,12 @@ const Prompt = () => {
         }
     }
 
+    const handleInput = (e) => {
+        const content = e.currentTarget.innerHTML;
+        setEditorContent(content);
+        setCharCount(content.length);
+    }
+
     return (
         <div className="center">
             <div className="place-content-center">
@@ -40,32 +47,23 @@ const Prompt = () => {
                 <button onClick={() => formatText('italic')}><i>I</i></button>
                 <button onClick={() => formatText('underline')}><u>U</u></button>
                 <button onClick={() => formatText('strikeThrough')}><s>S</s></button>
-                <button onClick={() => formatText('justifyLeft')}>Left</button>
-                <button onClick={() => formatText('justifyCenter')}>Center</button>
-                <button onClick={() => formatText('justifyRight')}>Right</button>
-                <button onClick={() => formatText('justifyFull')}>Justify</button>
-                <button onClick={() => formatText('insertOrderedList')}>OL</button>
-                <button onClick={() => formatText('insertUnorderedList')}>UL</button>
-                <button onClick={() => formatText('createLink', prompt('Enter URL:'))}>Link</button>
-                <button onClick={insertImage}>Image</button>
-                <button onClick={() => formatText('removeFormat')}>Clear</button>
-                <select onChange={(e) => formatText('fontSize', e.target.value)}>
-                    <option value="1">Small</option>
-                    <option value="3">Normal</option>
-                    <option value="5">Large</option>
-                </select>
-                <input type="color" onChange={(e) => formatText('foreColor', e.target.value)}/>
-                <button onClick={() => formatText('hiliteColor', prompt('Enter a background color:'))}>Highlight</button>
-                <select onChange={(e) => formatText('fontName', e.target.value)}>
-                    <option value="Arial">Arial</option>
-                    <option value="Courier New">Courier New</option>
-                    <option value="Times New Roman">Times New Roman</option>
-                </select>
             </div>
-            <div id="editor" 
-                 contentEditable="true" 
-                 onInput={(e) => setEditorContent(e.target.value)}
-                 style={{border: "1px solid #ccc", minHeight: "300px", padding: "10px"}}>
+            <div style={{ position: "relative" }}>
+                <div id="editor"
+                    contentEditable="true"
+                    dangerouslySetInnerHTML={{ __html: editorContent }}
+                    onInput={handleInput}
+                    style={{ border: "1px solid #ccc", minHeight: "300px", padding: "10px" }}>
+                </div>
+                <div style={{
+                    position: "absolute",
+                    bottom: "5px",
+                    right: "10px",
+                    fontSize: "12px",
+                    color: "#888"
+                }}>
+                    {charCount}/135
+                </div>
             </div>
             {/* Inline CSS for simplicity */}
             <style>{`
