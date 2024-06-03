@@ -115,7 +115,7 @@ const Vote = ({user}) => {
 
     return (
         <div>
-            <h1 className="text-2xl font-bold text-center mb-4"> Vote Page </h1>
+            <h1 className="text-2xl font-bold text-center mb-4"> Vote! </h1>
             <p className="text-lg text-center mb-10">{prompt}</p>
             <DisplayResponse content={feed[index]}/>
         </div>
