@@ -57,12 +57,6 @@ const Prompt = ({user}) => {
                 <p className="text-lg text-center mb-10">{prompt}</p>
             </div>
             {/* Rich Text Editor */}
-            <div className="toolbar">
-                <button onClick={() => formatText('bold')}><b>B</b></button>
-                <button onClick={() => formatText('italic')}><i>I</i></button>
-                <button onClick={() => formatText('underline')}><u>U</u></button>
-                <button onClick={() => formatText('strikeThrough')}><s>S</s></button>
-            </div>
             <div style={{ position: "relative" }}>
                 <div id="editor"
                     contentEditable="true"
