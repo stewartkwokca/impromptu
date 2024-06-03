@@ -7,7 +7,8 @@ const Prompt = ({user}) => {
     const [prompt, setPrompt] = useState("");
     const [editorContent, setEditorContent] = useState("Start editing...");
     const [charCount, setCharCount] = useState(0);
-    const [maxMsg, setMaxMsg] = useState(false)
+    const [maxMsg, setMaxMsg] = useState(false);
+    const [successMsg, setSuccessMsg] = useState(false);
 
     useEffect(() => {
         axios.get(`${api_url}/prompt`).then((res, err) => {
@@ -36,12 +37,11 @@ const Prompt = ({user}) => {
           const content = editorContent;
           if (content.length > 135) {
             //console.log("Please have less than 135 characters");
-            setMaxMsg(true)
+            setMaxMsg(true);
             return;
           }
           axios.post(`${api_url}/prompt/submit`, {"user": user.username, "text": content}, {withCredentials: true}).then((res, err) => {
-            console.log("Succesfully submitted: ")
-            console.log(res);
+            setSuccessMsg(true);
           }).catch((err) => {
             console.log("Got error: ")
             console.log(err);
@@ -53,6 +53,7 @@ const Prompt = ({user}) => {
     return (
         <div className="center">
             {maxMsg && <div className="flex justify-center items-center mb-3"><div className="w-full max-w-md p-8 rounded-lg shadow-md text-center bg-red-500"><h2 className="text-lg text-center font-bold text-white">Please use fewer than 135 characters</h2></div></div>}
+            {successMsg && <div className="flex justify-center items-center mb-3"><div className="w-full max-w-md p-8 rounded-lg shadow-md text-center bg-green-500"><h2 className="text-lg text-center font-bold text-white">Successfully submitted!</h2></div></div>}
             <div className="place-content-center">
                 <h1 className="text-2xl font-bold text-center mb-4">Prompt</h1>
                 <p className="text-lg text-center mb-3">{prompt}</p>
