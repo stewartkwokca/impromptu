@@ -52,9 +52,10 @@ const Prompt = ({user}) => {
 
     return (
         <div className="center">
+            {maxMsg && <div className="flex justify-center items-center mb-3"><div className="w-full max-w-md p-8 rounded-lg shadow-md text-center bg-red-500"><h2 className="text-lg text-center font-bold text-white">Please use fewer than 135 characters</h2></div></div>}
             <div className="place-content-center">
                 <h1 className="text-2xl font-bold text-center mb-4">Prompt</h1>
-                <p className="text-lg text-center mb-10">{prompt}</p>
+                <p className="text-lg text-center mb-3">{prompt}</p>
             </div>
             {/* Rich Text Editor */}
             <div style={{ position: "relative" }}>
@@ -89,14 +90,11 @@ const Prompt = ({user}) => {
                     padding: 10px;
                 }
             `}</style>
-            <form onSubmit={handleSubmit} style={{ textAlign: "center", marginTop: "10px" }}>
+            <form onSubmit={handleSubmit} style={{ textAlign: "center", marginTop: "10px" }} className="mb-6">
                 <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">
                     Submit
                 </button>
             </form>
-            <div style={{ textAlign: "center"}}>
-                {maxMsg && <h1>Please Use Fewer than 135 characters</h1>}
-            </div>
         </div>
     );
 }
