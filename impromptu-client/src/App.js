@@ -9,6 +9,7 @@ import Vote from "./pages/Vote";
 import Prompt from "./pages/Prompt";
 import Scoreboard from "./pages/Scoreboard";
 import Login from "./pages/Login";
+import Profile from "./pages/Profile";
 
 const api_url = "http://localhost:8000";
 
@@ -31,6 +32,9 @@ function App(){
           <Route path="prompt" element={<Prompt user={user}/>} />
           <Route path="scoreboard" element={<Scoreboard user={user}/>} />
           <Route path="login" element={<Login user={user}/>} />
+          <Route path="profile" element={<Profile user={user}/>}>
+              <Route path=":userID"></Route>
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>
