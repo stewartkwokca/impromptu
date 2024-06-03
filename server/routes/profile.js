@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require('mongoose');
 const UserModel = require('../models/userModel');
+const ResponseModel = require("../models/responseModel");
 
 router.get("/:userID?", async(req, res) => {
     let userID = "";
@@ -24,8 +25,13 @@ router.get("/:userID?", async(req, res) => {
         return;
     }
     let user = userDocument.toObject();
-    
+    console.log(user);
     delete user.password;
+    const responseIDs = user.responses || [];
+    console.log(responseIDs);
+    const userResponses = await ResponseModel.find({"_id": {$in: responseIDs}});
+    console.log(userResponses);
+    user.responses = userResponses;
     res.send(user);
     return;
 });

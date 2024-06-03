@@ -30,7 +30,7 @@ const Prompt = ({user}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (user != null) { {
+        if (user) { {
           // if the account does exist
           console.log(e);
           const content = editorContent;

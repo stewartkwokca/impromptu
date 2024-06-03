@@ -11,27 +11,24 @@ const Profile = ({user}) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!user && !userID) {
-            navigate("/");
-        }
         let id = userID || "";
         axios.get(`${api_url}/profile/${id}`, {withCredentials: true}).then((res, err) => {
+            console.log(res.data);
+            if ("error" in res.data) navigate("/login");
             setUserData(res.data);
-            setUserResponses(res.responses);
-            console.log("User data"); 
-            console.log(userData);
+            setUserResponses(res.data.responses);
         }).catch((err) => {
             console.log(err);
         })
     }, []);
 
-    /*const renderItems = userResponses.map((content) => 
+    const renderItems = userResponses.map((content, key) => 
         <div className="border rounded border-sky-300 first:text-amber-400 place-content-center">
-            <p className="mx-8 text-sm font-light">@{content.user}</p>
-            <p className="mx-8 text-sm font-bold">{content.votes} Votes</p>
-            <p className="mx-8 my-2">{content.response}</p>
+            <p className="mt-5 mx-8 text-sm">Prompt: {content.promptText}</p>
+            <p className="mx-8 my-2 font-bold">@{userData?.username}'s response: {content.response}</p>
+            <p className="mb-5 mx-8 text-sm">{content.votes} Votes</p>
         </div>
-    );*/
+    );
 
     return (
         <div className="center">
@@ -41,7 +38,7 @@ const Profile = ({user}) => {
                 <p className="text-lg text-center mb-10">{prompt}</p>
             </div>
             <div className="mx-20 grid grid-cols-1 gap-4 flex">
-                Remember to renderItems after we add in backend linking
+                {renderItems}
             </div>
         </div>
     );

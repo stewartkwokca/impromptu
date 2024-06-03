@@ -21,6 +21,10 @@ const userSchema = mongoose.Schema(
         responsesViewed: {
             type: Array,
             required: true
+        },
+        responses: {
+            type: Array,
+            required: true
         }
     },
     { timestamps: true}

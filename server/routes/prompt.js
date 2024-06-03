@@ -79,16 +79,19 @@ router.post("/submit", async (req, res) => { // submit to a prompt
         votes: 0,
         views: 0,
         user: req.body.user,
+        userID: req.session.userID,
         response: req.body.text,
         promptID: prompt._id,
         promptText: prompt.text
     }
 
     const response = await Response.create(newResponse);
-    
+    console.log(response._id.toString());
     req.session.submitted = true;
-    
-    await User.findOneAndUpdate({username: req.body.user}, {submitted: true}, {new : true});
+    const userResponses = user.responses || [];
+    userResponses.push(response._id.toString());
+
+    await User.findOneAndUpdate({username: req.body.user}, {submitted: true, responses: userResponses}, {new : true});
 
     return res.send(response);
 });
