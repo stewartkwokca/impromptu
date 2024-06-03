@@ -19,10 +19,6 @@ const Prompt = ({user}) => {
             })
     }, [])
 
-    const formatText = (command, value = null) => {
-        document.execCommand(command, false, value);
-    }
-
     const handleInput = (e) => {
         const content = e.currentTarget.innerHTML;
         setEditorContent(content);
@@ -59,21 +55,13 @@ const Prompt = ({user}) => {
                 <p className="text-lg text-center mb-3">{prompt}</p>
             </div>
             {/* Rich Text Editor */}
-            <div style={{ position: "relative" }}>
+            <div style={{ position: "relative" }} className="px-10">
                 <div id="editor"
                     contentEditable="true"
                     onInput={handleInput}
                     style={{ border: "1px solid #ccc", minHeight: "300px", padding: "10px" }}>
                 </div>
-                <div style={{
-                    position: "absolute",
-                    bottom: "5px",
-                    right: "10px",
-                    fontSize: "12px",
-                    color: "#888"
-                }}>
-                    {charCount}/135
-                </div>
+                <div className="text-right">{charCount}/135</div>
             </div>
             {/* Inline CSS for simplicity */}
             <style>{`
