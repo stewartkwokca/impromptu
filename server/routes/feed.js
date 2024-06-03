@@ -38,7 +38,7 @@ router.get("/", async (req, res) => {
         viewed.push(response._id.toString());
     }
     const result = await User.updateOne({"_id": req.session.userID}, {$set: {"responsesViewed": viewed}});
-    await Response.updateMany({"createdAt": {$gte: date}}, {$inc: {"views": 1}});
+    await Response.updateMany({"_id": {$in: responses}}, {$inc: {"views": 1}});
     if (responses.length==0) responses = ["You've viewed all posts for today!"];
     res.send(responses);
     return;
