@@ -27,18 +27,23 @@ const Prompt = ({user}) => {
         setCharCount(content.length);
     }
 
-    const handleSubmit = () => {
-        axios.post(`${api_url}/submit`, {
-            content: editorContent
-        })
-        .then(response => {
-            console.log('Data submitted successfully:', response.data);
-            // Perform additional actions based on the response, if needed
-        })
-        .catch(error => {
-            console.error('There was an error submitting the data!', error);
-        });
-    };
+    const handleSubmit = (e) => {
+        if (user != null) { {
+          // if the account does exist
+          const content = e.currentTarget.innerHTML;
+          if (content.length > 135) {
+            //console.log("Please have less than 135 characters");
+          }
+          axios.post(`${api_url}/prompt/submit`, {"user": user.username, "text": content}).then((res, err) => {
+            console.log("Succesfully submitted: ")
+            console.log(res);
+          }).catch((err) => {
+            console.log("Got error: ")
+            console.log(err);
+          })
+        }
+      };
+    }
 
     return (
         <div className="center">
