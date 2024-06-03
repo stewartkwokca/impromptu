@@ -7,6 +7,7 @@ const Prompt = ({user}) => {
     const [prompt, setPrompt] = useState("");
     const [editorContent, setEditorContent] = useState("Start editing...");
     const [charCount, setCharCount] = useState(0);
+    const [maxMsg, setMaxMsg] = useState(false)
 
     useEffect(() => {
         axios.get(`${api_url}/prompt`).then((res, err) => {
@@ -35,6 +36,8 @@ const Prompt = ({user}) => {
           const content = editorContent;
           if (content.length > 135) {
             //console.log("Please have less than 135 characters");
+            setMaxMsg(true)
+            return;
           }
           axios.post(`${api_url}/prompt/submit`, {"user": user.username, "text": content}, {withCredentials: true}).then((res, err) => {
             console.log("Succesfully submitted: ")
@@ -97,6 +100,9 @@ const Prompt = ({user}) => {
                     Submit
                 </button>
             </form>
+            <div style={{ textAlign: "center"}}>
+                {maxMsg && <h1>Please Use Fewer than 135 characters</h1>}
+            </div>
         </div>
     );
 }
