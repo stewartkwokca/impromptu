@@ -27,14 +27,14 @@ function App(){
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<><Layout user={user}/></>}>
+          <Route path="profile" element={<Profile user={user}/>}>
+              <Route path=":userID"></Route>
+          </Route>
+          <Route path="login" element={<Login user={user} setUser={setUser}/>} />
           <Route index element={<MainPage />}/>
           <Route path="vote" element={<Vote user={user}/>}/>
           <Route path="prompt" element={<Prompt user={user}/>} />
           <Route path="scoreboard" element={<Scoreboard user={user}/>} />
-          <Route path="login" element={<Login user={user}/>} />
-          <Route path="profile" element={<Profile user={user}/>}>
-              <Route path=":userID"></Route>
-          </Route>
         </Route>
       </Routes>
     </BrowserRouter>

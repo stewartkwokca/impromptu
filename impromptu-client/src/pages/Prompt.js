@@ -22,17 +22,23 @@ const Prompt = ({user}) => {
     }
 
     const handleInput = (e) => {
-        const content = e.currentTarget.innerText;
-        if (content.length > 135){
-            const ts = e.target.value.slice(0, 135);
-            setEditorContent(ts);
-            setCharCount(135)
-        }
-        else{
-            setEditorContent(e.target.value);
-            setCharCount(content.length);
-        }
+        const content = e.currentTarget.innerHTML;
+        setEditorContent(e.target.value);
+        setCharCount(content.length);
     }
+
+    const handleSubmit = () => {
+        axios.post(`${api_url}/submit`, {
+            content: editorContent
+        })
+        .then(response => {
+            console.log('Data submitted successfully:', response.data);
+            // Perform additional actions based on the response, if needed
+        })
+        .catch(error => {
+            console.error('There was an error submitting the data!', error);
+        });
+    };
 
     return (
         <div className="center">
@@ -79,6 +85,11 @@ const Prompt = ({user}) => {
                     padding: 10px;
                 }
             `}</style>
+            <form onSubmit={handleSubmit} style={{ textAlign: "center", marginTop: "10px" }}>
+                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">
+                    Submit
+                </button>
+            </form>
         </div>
     );
 }

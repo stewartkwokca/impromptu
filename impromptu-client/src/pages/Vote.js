@@ -7,7 +7,7 @@ const api_url = "http://localhost:8000"
 const Vote = ({user}) => {
     const [feed, setFeed] = useState([]);
     const [prompt, setPrompt] = useState("");
-    
+
     useEffect(() =>{
         axios.get(`${api_url}/feed`).then((res, err) => {
             console.log(res)
@@ -15,7 +15,7 @@ const Vote = ({user}) => {
         }).catch((err) => {
             console.log(err)
         })
-    })
+    }, [])
 
     useEffect(() => {
         axios.get(`${api_url}/prompt`).then((res, err) => {
@@ -24,7 +24,7 @@ const Vote = ({user}) => {
         }).catch((err) => {
             console.log(err)
         })
-    })
+    }, [])
 
 
 

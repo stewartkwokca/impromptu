@@ -23,7 +23,8 @@ router.post("/", async(req, res) => {
     const userDocument = await User.create({"username": req.body.username, "email": req.body.email, "password": hash, "submitted": false});
     console.log(userDocument);
     req.session['userID'] = userDocument._id.toString();
-    res.status(200).send({"success": true, "message": "user created"});
+    req.session['username'] = req.body.username;
+    res.status(200).send({"success": true, "user" : {"userID": userDocument._id.toString(), "username": req.body.username}});
 });
 
 module.exports = router;
