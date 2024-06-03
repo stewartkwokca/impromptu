@@ -23,18 +23,20 @@ const Prompt = ({user}) => {
 
     const handleInput = (e) => {
         const content = e.currentTarget.innerHTML;
-        setEditorContent(e.target.value);
+        setEditorContent(content);
         setCharCount(content.length);
     }
 
     const handleSubmit = (e) => {
+        e.preventDefault();
         if (user != null) { {
           // if the account does exist
-          const content = e.currentTarget.innerHTML;
+          console.log(e);
+          const content = editorContent;
           if (content.length > 135) {
             //console.log("Please have less than 135 characters");
           }
-          axios.post(`${api_url}/prompt/submit`, {"user": user.username, "text": content}).then((res, err) => {
+          axios.post(`${api_url}/prompt/submit`, {"user": user.username, "text": content}, {withCredentials: true}).then((res, err) => {
             console.log("Succesfully submitted: ")
             console.log(res);
           }).catch((err) => {
