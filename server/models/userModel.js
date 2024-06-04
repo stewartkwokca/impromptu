@@ -18,7 +18,7 @@ const userSchema = mongoose.Schema(
             type: Boolean,
             required: true
         },
-        responsesViewed: {
+        responsesVoted: {
             type: Array,
             required: true
         },

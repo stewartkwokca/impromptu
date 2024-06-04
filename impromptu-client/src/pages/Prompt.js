@@ -36,7 +36,6 @@ const Prompt = ({user}) => {
           console.log(e);
           const content = editorContent;
           axios.get(`${api_url}/hasSubmitted`, {withCredentials: true}).then((res, err) => {
-            console.log(res.submitted);
             setSubMsg(res.submitted);
           }).catch((err) => {
             console.log(err);
