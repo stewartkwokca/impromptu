@@ -31,8 +31,8 @@ code {
 }
 
 :root {
-  --foreground-rgb: 203, 213, 225;
-  --background-rgb: 51, 65, 85;
+  --foreground-rgb: 103, 113, 125;
+  --background-rgb: 191, 219, 254;
 }
 
 body {
