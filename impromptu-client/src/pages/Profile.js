@@ -20,7 +20,7 @@ const Profile = ({user}) => {
         }).catch((err) => {
             console.log(err);
         })
-    }, []);
+    }, [user]);
 
     const renderItems = userResponses.map((content, key) => 
         <div className="border rounded border-sky-300 first:text-amber-400 place-content-center">

@@ -10,6 +10,7 @@ import Prompt from "./pages/Prompt";
 import Scoreboard from "./pages/Scoreboard";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
+import History from "./pages/History";
 
 const api_url = "http://localhost:8000";
 
@@ -26,7 +27,7 @@ function App(){
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<><Layout user={user}/></>}>
+        <Route path="/" element={<Layout user={user} setUser={setUser}/>}>
           <Route path="profile" element={<Profile user={user}/>}>
               <Route path=":userID"></Route>
           </Route>
@@ -35,6 +36,7 @@ function App(){
           <Route path="vote" element={<Vote user={user}/>}/>
           <Route path="prompt" element={<Prompt user={user}/>} />
           <Route path="scoreboard" element={<Scoreboard user={user}/>} />
+          <Route path="history" element={<History user={user} />} />
         </Route>
       </Routes>
     </BrowserRouter>

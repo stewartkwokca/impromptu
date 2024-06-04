@@ -1,6 +1,14 @@
 import { Outlet, Link } from "react-router-dom";
+import axios from "axios";
+const api_url = "http://localhost:8000";
 
-const Layout = ({user}) => {
+const Layout = ({user, setUser}) => {
+  const handleLogout = async() => {
+    await axios.post(`${api_url}/logout`,{}, {withCredentials: true}).then((res, err) => {
+      console.log("logging out");
+      setUser(null);
+    })
+  }
   return (
     <>
       <nav class="flex items-center justify-between flex-wrap bg-sky-800 p-6 mb-10">
@@ -12,13 +20,21 @@ const Layout = ({user}) => {
             <Link to="/scoreboard" className="block mt-4 text-lg font-bold lg:inline-block lg:mt-0 text-sky-300 hover:text-white mr-4">
               Scoreboard
             </Link>
-            <Link to="/vote" className="block mt-4 text-lg font-bold lg:inline-block lg:mt-0 text-sky-300 hover:text-white">
+            <Link to="/vote" className="block mt-4 text-lg font-bold lg:inline-block lg:mt-0 text-sky-300 hover:text-white mr-4">
               Vote
+            </Link>
+            <Link to="/history" className="block mt-4 text-lg font-bold lg:inline-block lg:mt-0 text-sky-300 hover:text-white">
+              History
             </Link>
           </div>
           <div>
-
-            <Link to={!user ? "/login" : "/profile"} className="inline-block text-lg px-4 py-2 leading-none border rounded text-white border-sky-300 hover:border-transparent hover:text-sky-500 hover:bg-slate-200 mt-4 lg:mt-0">{user==null ? "Login": "Profile"}</Link>
+            <Link to={user==null ? "/login" : "/profile"} className="inline-block text-lg px-4 py-2 leading-none border rounded text-white border-sky-300 hover:border-transparent hover:text-sky-500 hover:bg-slate-200 mt-4 lg:mt-0">{user==null ? "Login": "Profile"}</Link>
+          </div>
+          <div>
+            {user!=null ? <button 
+              className="inline-block text-lg px-4 py-2 leading-none border rounded text-white border-sky-300 hover:border-transparent hover:text-sky-500 hover:bg-slate-200 mt-4 lg:mt-0 ml-4"
+              onClick={handleLogout}
+            >Logout</button>: <></>}
           </div>
         </div>
       </nav>
