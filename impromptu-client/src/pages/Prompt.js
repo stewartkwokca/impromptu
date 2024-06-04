@@ -13,7 +13,7 @@ const Prompt = ({user}) => {
 
     useEffect(() => {
         axios.get(`${api_url}/prompt`, {withCredentials: true}).then((res, err) => {
-            console.log(res);
+            // console.log(res);
             setPrompt(res.data.text);
         }).catch((err) => {
                 console.log(err);
@@ -33,10 +33,10 @@ const Prompt = ({user}) => {
         setSubMsg(false);
         if (user) { {
           // if the account does exist
-          console.log(e);
+          // console.log(e);
           const content = editorContent;
           axios.get(`${api_url}/hasSubmitted`, {withCredentials: true}).then((res, err) => {
-            setSubMsg(res.submitted);
+            setSubMsg(res.data.submitted);
           }).catch((err) => {
             console.log(err);
           })

@@ -13,7 +13,7 @@ const Profile = ({user}) => {
     useEffect(() => {
         let id = userID || "";
         axios.get(`${api_url}/profile/${id}`, {withCredentials: true}).then((res, err) => {
-            console.log(res.data);
+            // console.log(res.data);
             if ("error" in res.data) navigate("/login");
             setUserData(res.data);
             setUserResponses(res.data.responses);

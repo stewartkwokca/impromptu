@@ -18,7 +18,7 @@ function App(){
   const [user, setUser] = useState(null);
   useEffect(() => {
     axios.get(`${api_url}/login`, {withCredentials: true}).then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       if (!("error" in res.data)) setUser(res.data);
     }).catch((err) => {
       console.log(err);

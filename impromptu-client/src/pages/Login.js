@@ -11,7 +11,7 @@ function Login({user, setUser}) {
     
     useEffect(() => {
       if (user) {
-        console.log(user);
+        // console.log(user);
         navigate("/");
       }
     }, [])
@@ -79,9 +79,9 @@ function LoginPrompt({handleLogin, passUsername, setUser}){
     e.preventDefault();
     if (isLogin) {
       // Handle login
-      console.log('Logging in with', {username, password});
+      // console.log('Logging in with', {username, password});
       axios.post(`${api_url}/login`,{username, password}, {withCredentials: true}).then((res, err) => {
-        console.log(res);
+        // console.log(res);
         setUser(res.data.user);
         handleLogin(1)
         passUsername(username)
@@ -93,9 +93,9 @@ function LoginPrompt({handleLogin, passUsername, setUser}){
     } else {
       // Handle account creation
       const creds = {email, username, password }
-      console.log('Creating account with', creds);
+      // console.log('Creating account with', creds);
       axios.post(`${api_url}/signup`, creds, {withCredentials: true}).then((res, err) => {
-        console.log(res);
+        // console.log(res);
         handleLogin(2)
         setUser(res.data.user);
         passUsername(username)
