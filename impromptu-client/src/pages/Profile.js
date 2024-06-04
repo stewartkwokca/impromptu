@@ -23,7 +23,7 @@ const Profile = ({user}) => {
     }, [user]);
 
     const renderItems = userResponses.map((content, key) => 
-        <div className="border rounded border-sky-300 first:text-amber-400 place-content-center">
+        <div className="border rounded border-sky-300 place-content-center">
             <p className="mt-5 mx-8 text-sm">Prompt: {content.promptText}</p>
             <p className="mx-8 my-2 font-bold">@{userData?.username}'s response: {content.response}</p>
             <p className="mb-5 mx-8 text-sm">{content.votes} Votes</p>

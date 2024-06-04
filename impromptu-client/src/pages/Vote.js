@@ -45,7 +45,7 @@ const Vote = ({user}) => {
         setIndex(index + 1)
         //console.log("Here is the requestL ")
         //console.log({response_id: respID, votes: votes.current})
-        axios.post(`${api_url}/vote`, {response_id: respID, votes: votes.current}).then((res, err) => {
+        axios.post(`${api_url}/vote`, {response_id: respID, votes: votes.current}, {withCredentials: true}).then((res, err) => {
             //console.log(res)
         }).catch((err) => {
             console.log(err)
@@ -116,8 +116,9 @@ const Vote = ({user}) => {
     return (
         <div>
             <h1 className="text-2xl font-bold text-center mb-4"> Vote! </h1>
-            <p className="text-lg text-center mb-10">{prompt}</p>
-            <DisplayResponse content={feed[index]}/>
+            <p className="text-lg text-center mb-3">{prompt}</p>
+            {user && <DisplayResponse content={feed[index]}/>}
+            {!user && <div className="flex justify-center items-center mb-3"><div className="w-full max-w-md p-8 rounded-lg shadow-md text-center bg-red-500"><h2 className="text-lg text-center font-bold text-white">Please <a href="/login" className="text-blue-300 underline">sign in</a> to vote for others' responses!</h2></div></div>}
         </div>
     );
 }
