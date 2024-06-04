@@ -12,7 +12,7 @@ const Prompt = ({user}) => {
     const [successMsg, setSuccessMsg] = useState(false);
 
     useEffect(() => {
-        axios.get(`${api_url}/prompt`).then((res, err) => {
+        axios.get(`${api_url}/prompt`, {withCredentials: true}).then((res, err) => {
             console.log(res);
             setPrompt(res.data.text);
         }).catch((err) => {
@@ -30,11 +30,13 @@ const Prompt = ({user}) => {
         e.preventDefault();
         setMaxMsg(false);
         setSuccessMsg(false);
+        setSubMsg(false);
         if (user) { {
           // if the account does exist
           console.log(e);
           const content = editorContent;
-          axios.get(`${api_url}/hasSubmitted`).then((res, err) => {
+          axios.get(`${api_url}/hasSubmitted`, {withCredentials: true}).then((res, err) => {
+            console.log(res.submitted);
             setSubMsg(res.submitted);
           }).catch((err) => {
             console.log(err);
@@ -43,7 +45,6 @@ const Prompt = ({user}) => {
             return;
           }
           if (content.length > 135) {
-            //console.log("Please have less than 135 characters");
             setMaxMsg(true);
             return;
           }
