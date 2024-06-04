@@ -9,7 +9,7 @@ const Scoreboard = ({user}) => {
 
     useEffect(() => {
         axios.get(`${api_url}/prompt`).then((res, err) => {
-            console.log(res);
+            // console.log(res);
             setPrompt(res.data.text);
         }).catch((err) => {
                 console.log(err);
@@ -18,7 +18,7 @@ const Scoreboard = ({user}) => {
 
     useEffect(() => {
         axios.get(`${api_url}/scoreboard`).then((res, err) => {
-            console.log(res);
+            // console.log(res);
             setTops(res.data.responses);
         }).catch((err) => {
                 console.log(err);

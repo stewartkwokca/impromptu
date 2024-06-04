@@ -8,11 +8,11 @@ const Layout = ({user, setUser}) => {
   const [navVisible, setNavVisible] = useState(false);
   const handleLogout = async() => {
     await axios.post(`${api_url}/logout`,{}, {withCredentials: true}).then((res, err) => {
-      console.log("logging out");
+      // console.log("logging out");
       setUser(null);
     })
   }
-  console.log(user);
+  // console.log(user);
   return (
     <div class="flex flex-col h-screen w-screen">
       <div class="flex flex-row w-screen h-16 bg-black fixed top-0 left-0 justify-between">

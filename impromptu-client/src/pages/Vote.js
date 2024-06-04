@@ -18,7 +18,7 @@ const Vote = ({user}) => {
 
     function getResponses() {
         axios.get(`${api_url}/feed`, {withCredentials: true}).then((res, err) => {
-            console.log(res)
+            // console.log(res)
             if ("error" in res.data) setFeed([]);
             else setFeed(res.data);
             setIndex(0)
@@ -46,7 +46,7 @@ const Vote = ({user}) => {
         setDisplayMessage(false)
         setIndex(index + 1)
         //console.log("Here is the requestL ")
-        console.log({response_id: respID, votes: votes.current})
+        // console.log({response_id: respID, votes: votes.current})
         axios.post(`${api_url}/vote`, {response_id: respID, votes: votes.current}, {withCredentials: true}).then((res, err) => {
             //console.log(res)
         }).catch((err) => {
@@ -60,8 +60,8 @@ const Vote = ({user}) => {
 
     useEffect(() => {
         if (feed.length > 0 && index < feed.length) {
-            console.log("FEED");
-            console.log(feed);
+            // console.log("FEED");
+            // console.log(feed);
             setUsername(feed[index].user);
             setFunny(feed[index].response);
             setRespID(feed[index]._id)
