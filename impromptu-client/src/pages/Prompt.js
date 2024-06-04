@@ -65,10 +65,14 @@ const Prompt = ({user}) => {
 
             <style>{`
                 #editor {
-                    border: 1px solid #ccc;
-                    min-height: 300px;
-                    padding: 10px;
-                }
+                    padding: 0.5em; /* Padding for a better user experience */
+                    border: 2px solid #787777; /* Border style */
+                    background-color: rgb(212, 220, 220);
+                    border-radius: 4px; /* Slightly rounded corners */
+                    font-size: 1rem; /* Ensure consistent text size */
+                    text-align: left;
+                    color: rgb(51, 65, 85);
+                  }
             `}</style>
             
             { user && <form onSubmit={handleSubmit} style={{ textAlign: "center", marginTop: "10px" }} className="mb-6">
