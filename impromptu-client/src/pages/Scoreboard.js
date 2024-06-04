@@ -30,7 +30,7 @@ const Scoreboard = ({user}) => {
             <h1 className="mx-8 mt-2 text-lg font-extrabold">{index + 1}</h1> 
             <p className="mx-8 text-sm font-light">@{content.user}</p>
             <p className="mx-8 text-sm font-bold">{content.votes} Votes</p>
-            <p className="mx-8 my-2">{content.response}</p>
+            <p className="mx-8 my-2 whitespace-pre-wrap">{content.response}</p>
         </div>
     );
 

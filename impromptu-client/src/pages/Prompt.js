@@ -20,7 +20,7 @@ const Prompt = ({user}) => {
     }, [])
 
     const handleInput = (e) => {
-        const content = e.currentTarget.innerHTML;
+        const content = e.currentTarget.value;
         setEditorContent(content);
         setCharCount(content.length);
     }
@@ -55,11 +55,12 @@ const Prompt = ({user}) => {
                 <p className="text-lg text-center mb-3">{prompt}</p>
             </div>
             { user && <div style={{ position: "relative" }} className="px-10">
-                <div id="editor"
-                    contentEditable="true"
-                    onInput={handleInput}
-                    style={{ border: "1px solid", minHeight: "300px", padding: "10px" }}>
-                </div>
+                <textarea
+                    id="editor"
+                    value={editorContent}
+                    onChange={handleInput}
+                    style={{ border: "1px solid", minHeight: "300px", padding: "10px", width: "100%" }}
+                />
                 <div className="text-right">{charCount}/135</div>
             </div>}
 
