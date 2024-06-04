@@ -4,7 +4,7 @@ const Response = require("../models/responseModel.js");
 
 router.post("/", async (req, res) => {
 
-    if (req.session){ // later, when authenticated, check for authentication
+    if (req.session.userID){ // later, when authenticated, check for authentication
 
         // TODO: check if user has voted for this prompt already
 
