@@ -29,6 +29,10 @@ const responsesSchema = mongoose.Schema(
         promptText: {
             type: String,
             required: true
+        },
+        usersVoted: {
+            type: Array,
+            required: true
         }
     },
     { timestamps: true}

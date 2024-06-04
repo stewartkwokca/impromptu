@@ -82,7 +82,8 @@ router.post("/submit", async (req, res) => { // submit to a prompt
         userID: req.session.userID,
         response: req.body.text,
         promptID: prompt._id,
-        promptText: prompt.text
+        promptText: prompt.text,
+        usersVoted: []
     }
 
     const response = await Response.create(newResponse);
