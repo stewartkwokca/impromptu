@@ -27,6 +27,8 @@ const Prompt = ({user}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setMaxMsg(false);
+        setSuccessMsg(false);
         if (user) { {
           // if the account does exist
           console.log(e);
@@ -48,8 +50,6 @@ const Prompt = ({user}) => {
 
     return (
         <div className="center">
-            {maxMsg && <div className="flex justify-center items-center mb-3"><div className="w-full max-w-md p-8 rounded-lg shadow-md text-center bg-red-500"><h2 className="text-lg text-center font-bold text-white">Please use fewer than 135 characters</h2></div></div>}
-            {successMsg && <div className="flex justify-center items-center mb-3"><div className="w-full max-w-md p-8 rounded-lg shadow-md text-center bg-green-500"><h2 className="text-lg text-center font-bold text-white">Successfully submitted!</h2></div></div>}
             <div className="place-content-center">
                 <h1 className="text-2xl font-bold text-center mb-4">Prompt</h1>
                 <p className="text-lg text-center mb-3">{prompt}</p>
@@ -58,20 +58,12 @@ const Prompt = ({user}) => {
                 <div id="editor"
                     contentEditable="true"
                     onInput={handleInput}
-                    style={{ border: "1px solid #ccc", minHeight: "300px", padding: "10px" }}>
+                    style={{ border: "1px solid", minHeight: "300px", padding: "10px" }}>
                 </div>
                 <div className="text-right">{charCount}/135</div>
             </div>}
 
             <style>{`
-                .toolbar {
-                    margin-bottom: 10px;
-                }
-                .toolbar button, .toolbar select, .toolbar input[type="color"] {
-                    margin-right: 5px;
-                    padding: 5px;
-                    font-size: 16px;
-                }
                 #editor {
                     border: 1px solid #ccc;
                     min-height: 300px;
@@ -85,6 +77,8 @@ const Prompt = ({user}) => {
                 </button>
             </form> }
 
+            {maxMsg && <div className="flex justify-center items-center mb-3"><div className="w-full max-w-md p-8 rounded-lg shadow-md text-center bg-red-500"><h2 className="text-lg text-center font-bold text-white">Please use fewer than 135 characters</h2></div></div>}
+            {successMsg && <div className="flex justify-center items-center mb-3"><div className="w-full max-w-md p-8 rounded-lg shadow-md text-center bg-green-500"><h2 className="text-lg text-center font-bold text-white">Successfully submitted!</h2></div></div>}
             {!user && <div className="flex justify-center items-center mb-3"><div className="w-full max-w-md p-8 rounded-lg shadow-md text-center bg-red-500"><h2 className="text-lg text-center font-bold text-white">Please <a href="/login" className="text-blue-300 underline">sign in</a> to respond to the prompt!</h2></div></div>}
 
         </div>

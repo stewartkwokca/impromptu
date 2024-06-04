@@ -9,12 +9,12 @@ const Vote = ({user}) => {
     const [feed, setFeed] = useState([]);
     const [prompt, setPrompt] = useState("");
     const [index, setIndex] = useState(0);
-    const responded = useRef(false)
+    const responded = useRef(false);
     const [displayMessage, setDisplayMessage] = useState(false)
-    const [username, setUsername] = useState("Loading user...")
-    const [funnyLine, setFunny] = useState("Loading Funny Response")
-    const [respID, setRespID] = useState()
-    const votes = useRef(0)
+    const [username, setUsername] = useState("Loading user...");
+    const [funnyLine, setFunny] = useState("Loading funny response...");
+    const [respID, setRespID] = useState();
+    const votes = useRef(0);
 
     function getResponses() {
         axios.get(`${api_url}/feed`).then((res, err) => {
@@ -36,6 +36,7 @@ const Vote = ({user}) => {
         })
     }
     function sendVote(){
+
         if (!responded.current){
             setDisplayMessage(true)
             return
@@ -101,14 +102,14 @@ const Vote = ({user}) => {
 
     function DisplayResponse(){
         return (
-            <div className="border rounded border-sky-300 p-4 w-2/3 mx-auto">
-            <p className="mx-8 my-2 text-sm font-light">@{username}</p>
-            <p className="mx-8 my-2">{funnyLine}</p>
+            <div className="px-4 w-2/3 mx-auto py-15">
+            <p className="mx-8 my-2 text-7xl">{funnyLine}</p>
+            <p className="mx-8 my-2 text-sm font-light">- @{username}</p>
             <div className="flex w-full">
             < SliderComponent/>
             <button class=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick = {sendVote} type="button">Vote!</button>
             </div>
-            {displayMessage && <h3>please adjust rating</h3>}
+            {displayMessage && <h3>Please adjust the rating.</h3>}
         </div>
         )
     }
