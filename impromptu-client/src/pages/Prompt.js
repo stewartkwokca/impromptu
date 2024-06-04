@@ -34,7 +34,7 @@ const Prompt = ({user}) => {
           // if the account does exist
           console.log(e);
           const content = editorContent;
-          axios.get(`${api_url}/hasSubmitted`).then((res, err) => {
+          axios.get(`${api_url}/hasSubmitted`, {withCredentials: true}).then((res, err) => {
             setSubMsg(res.submitted);
           }).catch((err) => {
             console.log(err);
