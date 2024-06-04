@@ -102,15 +102,15 @@ const Vote = ({user}) => {
 
     function DisplayResponse(){
         return (
-            <div className="px-4 w-2/3 mx-auto py-15">
+            <div className="px-4 w-2/3 m-auto my-10 py-5 border border-black align-middle">
             <p className="mx-8 my-2 text-7xl">{funnyLine}</p>
-            <p className="mx-8 my-2 text-sm font-light">- @{username}</p>
-            <div className="flex w-full">
+            <p className="mx-8 my-2 text-lg font-light">- @{username}</p>
+            <div className="flex w-full pb-5">
             < SliderComponent/>
             <button class=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick = {sendVote} type="button">Vote!</button>
             </div>
             {displayMessage && <h3>Please adjust the rating.</h3>}
-        </div>
+            </div>
         )
     }
 
