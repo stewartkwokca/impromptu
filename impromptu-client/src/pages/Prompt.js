@@ -8,6 +8,7 @@ const Prompt = ({user}) => {
     const [editorContent, setEditorContent] = useState("Start editing...");
     const [charCount, setCharCount] = useState(0);
     const [maxMsg, setMaxMsg] = useState(false);
+    const [subMsg, setSubMsg] = useState(false);
     const [successMsg, setSuccessMsg] = useState(false);
 
     useEffect(() => {
@@ -33,6 +34,14 @@ const Prompt = ({user}) => {
           // if the account does exist
           console.log(e);
           const content = editorContent;
+          axios.get(`${api_url}/hasSubmitted`).then((res, err) => {
+            setSubMsg(res.submitted);
+          }).catch((err) => {
+            console.log(err);
+          })
+          if (subMsg){
+            return;
+          }
           if (content.length > 135) {
             //console.log("Please have less than 135 characters");
             setMaxMsg(true);
@@ -82,6 +91,7 @@ const Prompt = ({user}) => {
                 </button>
             </form> }
 
+            {subMsg && <div className="flex justify-center items-center mb-3"><div className="w-full max-w-md p-8 rounded-lg shadow-md text-center bg-red-500"><h2 className="text-lg text-center font-bold text-white">You have already submitted today. Come back tomorrow for a new prompt!</h2></div></div>}
             {maxMsg && <div className="flex justify-center items-center mb-3"><div className="w-full max-w-md p-8 rounded-lg shadow-md text-center bg-red-500"><h2 className="text-lg text-center font-bold text-white">Please use fewer than 135 characters</h2></div></div>}
             {successMsg && <div className="flex justify-center items-center mb-3"><div className="w-full max-w-md p-8 rounded-lg shadow-md text-center bg-green-500"><h2 className="text-lg text-center font-bold text-white">Successfully submitted!</h2></div></div>}
             {!user && <div className="flex justify-center items-center mb-3"><div className="w-full max-w-md p-8 rounded-lg shadow-md text-center bg-red-500"><h2 className="text-lg text-center font-bold text-white">Please <a href="/login" className="text-blue-300 underline">sign in</a> to respond to the prompt!</h2></div></div>}
