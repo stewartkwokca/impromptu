@@ -40,3 +40,6 @@ body {
   background: rgb(var(--background-rgb));
 }
 
+div {
+  word-break: break-word
+}

@@ -103,7 +103,7 @@ const Vote = ({user}) => {
     function DisplayResponse(){
         return (
             <div className="px-4 w-2/3 m-auto my-10 py-5 border border-black align-middle">
-            <p className="mx-8 my-2 text-7xl">{funnyLine}</p>
+            <p className="mx-8 my-2 text-7xl whitespace-pre-wrap">{funnyLine}</p>
             <p className="mx-8 my-2 text-lg font-light">- @{username}</p>
             <div className="flex w-full pb-5">
             < SliderComponent/>
