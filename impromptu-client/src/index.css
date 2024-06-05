@@ -15,12 +15,12 @@ code {
 }
 
 .sim-input-box {
-  width: 25ch; /* Width of approximately 100 characters */
+  width: 50ch; /* Width of approximately 100 characters */
   padding: 0.5em; /* Padding for a better user experience */
   border: 2px solid #787777; /* Border style */
   background-color: rgb(212, 220, 220);
   border-radius: 4px; /* Slightly rounded corners */
-  font-size: 1rem; /* Ensure consistent text size */
+  font-size: 2rem; /* Ensure consistent text size */
   text-align: left;
   color: rgb(51, 65, 85);
 }

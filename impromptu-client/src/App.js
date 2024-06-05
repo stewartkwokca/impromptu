@@ -46,13 +46,16 @@ function App(){
 function MainPage() {
   return (
     <div className="MainPage">
-      <div className = "grid-center-container">
-        <h1 className="text-3xl font-bold mb-6">Welcome to imPROMPTu</h1>
-        <FillInAnimation/>
-        <Spacer size="10px" />
-        <form action="http://localhost:3000/prompt" method="get">
-          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">start playing!</button>
-        </form>
+      <div className="flex items-center justify-center h-svh">
+        <div className = "grid-center-container my-auto">
+          <h1 className="text-5xl font-bold mb-6">Welcome to imPROMPTu</h1>
+          <h3 className="text-lg mb-5">Powered by Google Gemini</h3>
+          <FillInAnimation/>
+          <Spacer size="10px" />
+          <form action="http://localhost:3000/prompt" method="get">
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">start playing!</button>
+          </form>
+        </div>
       </div>
     </div>
   );
