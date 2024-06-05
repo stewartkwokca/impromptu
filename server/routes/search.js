@@ -5,7 +5,7 @@ const User = require('../models/userModel');
 
 
 router.post("/users", async (req, res) => {
-    const username = req.body.prompt || "";
+    const username = req.body.username || "";
     const results = await User.find({"username": {$regex: username, $options: 'i'}}, {username: 1, _id: 1});
     res.send(results);
     return;

@@ -126,7 +126,7 @@ const Vote = ({user}) => {
                 <p className="text-2xl text-center mb-5">{prompt}</p>
             {user && morePosts && hasSubmitted && <DisplayResponse content={feed[index]}/>}
             {!user && <div className="flex justify-center items-center mb-3"><div className="w-full max-w-md p-8 rounded-lg shadow-md text-center bg-red-500"><h2 className="text-lg text-center font-bold text-white">Please <a href="/login" className="text-blue-300 underline">sign in</a> to vote for others' responses!</h2></div></div>}
-            {!morePosts && <div className="flex justify-center items-center mb-3"><div className="w-full max-w-md p-8 rounded-lg shadow-md text-center bg-red-500"><h2 className="text-lg text-center font-bold text-white">You've voted on all the posts for today! Check again later for more.</h2></div></div>}
+            {user && !morePosts && <div className="flex justify-center items-center mb-3"><div className="w-full max-w-md p-8 rounded-lg shadow-md text-center bg-red-500"><h2 className="text-lg text-center font-bold text-white">You've voted on all the posts for today! Check again later for more.</h2></div></div>}
             {!hasSubmitted && <div className="flex justify-center items-center mb-3"><div className="w-full max-w-md p-8 rounded-lg shadow-md text-center bg-red-500"><h2 className="text-lg text-center font-bold text-white">Submit your response to the prompt before voting on others'.</h2></div></div>}
 
         </div>

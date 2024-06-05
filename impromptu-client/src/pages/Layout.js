@@ -7,7 +7,7 @@ import 'react-dropdown/style.css';
 const api_url = "http://localhost:8000";
 
 const Layout = ({user, setUser}) => {
-  const [navVisible, setNavVisible] = useState(false);
+  const [navVisible, setNavVisible] = useState(true);
   const options = ['Users', 'Prompts'];
   const defaultOption = options[0];
   const handleLogout = async() => {
@@ -25,7 +25,7 @@ const Layout = ({user, setUser}) => {
           <Link to="/" className="block mt-4 text-lg font-bold lg:inline-block text-sky-200 ml-4 cursor-pointer">
             imPROMPTu
           </Link>
-          <img src={require('./impromptu-icon.png')} alt="Logo" className="ml-4 h-16 w-16" />
+          <img src={require('./impromptu-icon.png')} alt="Logo" className="ml-0 h-16 w-16" />
         </div>
         {/* <div class="flex w-[40%]">
           <form class="mx-auto my-auto w-full">   

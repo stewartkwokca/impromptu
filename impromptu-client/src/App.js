@@ -11,6 +11,7 @@ import Scoreboard from "./pages/Scoreboard";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import History from "./pages/History";
+import Search from "./pages/Search";
 
 const api_url = "http://localhost:8000";
 
@@ -37,6 +38,7 @@ function App(){
           <Route path="prompt" element={<Prompt user={user}/>} />
           <Route path="scoreboard" element={<Scoreboard user={user}/>} />
           <Route path="history" element={<History user={user} />} />
+          <Route path="search" element={<Search/>} />
         </Route>
       </Routes>
     </BrowserRouter>
