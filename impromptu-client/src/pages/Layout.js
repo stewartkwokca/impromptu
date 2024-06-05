@@ -21,6 +21,7 @@ const Layout = ({user, setUser}) => {
           <Link to="/" className="block mt-4 text-lg font-bold lg:inline-block text-sky-200 ml-4 cursor-pointer">
             imPROMPTu
           </Link>
+          <img src={require('./impromptu-icon.png')} alt="Logo" className="ml-4 h-16 w-16" />
         </div>
         <div class="flex">
           <form class="max-w-md mx-auto my-auto">   
