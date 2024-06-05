@@ -40,12 +40,22 @@ const Scoreboard = ({user}) => {
             })
     }
 
+    function updatePrompt(newDate) {
+        axios.post(`${api_url}/search/dates`, {date: `${newDate.getFullYear()}-${newDate.getMonth()+1}-${newDate.getDate()}`}).then((res, err) => {
+            setPrompt(res.data.text);
+            console.log(res.data.text);
+        }).catch((err) => {
+                console.log(err);
+            })
+    }
+
     const handlePreviousDateClick = () => {
         const newDate = new Date(Date.parse(date));
         newDate.setDate(newDate.getDate()-1);
         setDate(newDate.toDateString());
 
         updateTops(newDate);
+        updatePrompt(newDate);
     }
 
     const handleNextDateClick = () => {
@@ -59,6 +69,7 @@ const Scoreboard = ({user}) => {
         setDate(newDate.toDateString());
 
         updateTops(newDate);
+        updatePrompt(newDate);
     }
 
     const renderItems = tops.map((content, index) => 
