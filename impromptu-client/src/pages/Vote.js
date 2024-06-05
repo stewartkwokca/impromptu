@@ -11,13 +11,22 @@ const Vote = ({user}) => {
     const [index, setIndex] = useState(0);
     const [username, setUsername] = useState("Loading user...");
     const [funnyLine, setFunny] = useState("Loading funny response...");
+    const [morePosts, setMorePosts] = useState(true);
+    const [hasSubmitted, setHasSubmitted] = useState(true);
     const [respID, setRespID] = useState();
     const votes = useRef(0);
 
     function getResponses() {
         axios.get(`${api_url}/feed`, {withCredentials: true}).then((res, err) => {
-            // console.log(res)
-            if ("error" in res.data) setFeed([]);
+            if ("error" in res.data) {
+                setFeed([]);
+                if (res.data["error"]=="no more responses") {
+                    setMorePosts(false);
+                }
+                if (res.data["error"]=="submit your response first") {
+                    setHasSubmitted(false);
+                }
+            }
             else setFeed(res.data);
             setIndex(0)
             //console.log(feed)
@@ -38,7 +47,7 @@ const Vote = ({user}) => {
 
         setIndex(index + 1)
         //console.log("Here is the requestL ")
-        // console.log({response_id: respID, votes: votes.current})
+        console.log({response_id: respID, votes: votes.current})
         axios.post(`${api_url}/vote`, {response_id: respID, votes: votes.current}, {withCredentials: true}).then((res, err) => {
             //console.log(res)
         }).catch((err) => {
@@ -46,8 +55,9 @@ const Vote = ({user}) => {
         })
     }
     function setup(){
-        getPrompt()
-        getResponses()
+        getPrompt();
+        getResponses();
+        votes.current = 5;
     }
 
     useEffect(() => {
@@ -57,6 +67,11 @@ const Vote = ({user}) => {
             setUsername(feed[index].user);
             setFunny(feed[index].response);
             setRespID(feed[index]._id)
+            votes.current = 5;
+            setMorePosts(true);
+        }
+        else {
+            setMorePosts(false);
         }
     }, [feed, index]);
 
@@ -69,7 +84,7 @@ const Vote = ({user}) => {
         const [value, setValue] = useState(5);
         const handleChange = (event) => {
             setValue(event.target.value);
-            votes.current = event.target.value
+            votes.current = parseInt(event.target.value);
         };
     
         return (
@@ -81,8 +96,8 @@ const Vote = ({user}) => {
                     type="range"
                     id="slider"
                     name="slider"
-                    min="0"
-                    max="10"
+                    min={0}
+                    max={10}
                     value={value}
                     onChange={handleChange}
                     className="w-2/3"
@@ -109,8 +124,11 @@ const Vote = ({user}) => {
         <div>
             <h1 className="text-4xl font-bold text-center mb-6">Vote!</h1>
                 <p className="text-2xl text-center mb-5">{prompt}</p>
-            {user && <DisplayResponse content={feed[index]}/>}
+            {user && morePosts && hasSubmitted && <DisplayResponse content={feed[index]}/>}
             {!user && <div className="flex justify-center items-center mb-3"><div className="w-full max-w-md p-8 rounded-lg shadow-md text-center bg-red-500"><h2 className="text-lg text-center font-bold text-white">Please <a href="/login" className="text-blue-300 underline">sign in</a> to vote for others' responses!</h2></div></div>}
+            {!morePosts && <div className="flex justify-center items-center mb-3"><div className="w-full max-w-md p-8 rounded-lg shadow-md text-center bg-red-500"><h2 className="text-lg text-center font-bold text-white">You've voted on all the posts for today! Check again later for more.</h2></div></div>}
+            {!hasSubmitted && <div className="flex justify-center items-center mb-3"><div className="w-full max-w-md p-8 rounded-lg shadow-md text-center bg-red-500"><h2 className="text-lg text-center font-bold text-white">Submit your response to the prompt before voting on others'.</h2></div></div>}
+
         </div>
     );
 }
