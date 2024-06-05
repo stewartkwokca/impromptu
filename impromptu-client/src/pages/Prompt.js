@@ -60,7 +60,7 @@ const Prompt = ({user}) => {
     return (
         <div className="center">
             <div className="place-content-center">
-                <h1 className="text-4xl font-bold text-center mb-6">Prompt</h1>
+                <h1 className="text-4xl font-bold text-center mb-6">Today's Prompt</h1>
                 <p className="text-2xl text-center mb-5">{prompt}</p>
             </div>
             { user && <div style={{ position: "relative" }} className="px-10">

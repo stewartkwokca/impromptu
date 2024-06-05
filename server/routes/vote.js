@@ -12,7 +12,7 @@ router.post("/", async (req, res) => {
             return res.status(404).send("User not found");
         }
 
-        if (!req.body.response_id || !req.body.votes){
+        if (!req.body.response_id || !req.body.votes && req.body.votes!=0){
             return res.status(400).send("Missing response_id or number of votes");
         }
 

@@ -21,13 +21,16 @@ router.get("/", async (req, res) => {
         return;
     }
     if (!user.submitted) {
-        res.send({"error": "respond to the prompt before voting on others' responses"});
+        res.send({"error": "submit your response first"});
         return;
     }
     voted = user.responsesVoted || [];
     console.log(voted);
     let responses = await Response.find({"createdAt": {$gte: date}, "_id": {$nin: voted}, "userID": {$ne: req.session.userID}});
-    if (responses.length==0) responses = ["You've viewed all posts for today!"];
+    if (responses.length==0) {
+        res.send({"error": "no more responses"});
+        return;
+    }
     res.send(responses);
     return;
 
