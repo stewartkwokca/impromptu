@@ -16,7 +16,6 @@ const Search= () => {
 
     useEffect(() => {
         const search = setTimeout(async() => {
-            console.log(query);
             const key = queryType=='users' ? 'username' : 'prompt';
             const body = {};
             body[key] = query;
@@ -24,10 +23,10 @@ const Search= () => {
                 console.log(res.data);
                 setResults(res.data);
             })
-        }, 1000)
+        }, 200)
     
         return () => clearTimeout(search)
-      }, [query])
+      }, [query, queryType])
 
     return (
         <div className="flex w-full h-full">
@@ -36,10 +35,18 @@ const Search= () => {
                     <ReactDropdown className="w-[30%] h-10 p-0" options={options} value={def} onChange={(e)=>setQueryType(e.value.toLowerCase())}/>
                     <input className="w-full h-10 p-3" placeholder='Search' value={query} onChange={(e) => setQuery(e.target.value)}></input>
                 </div>
-                <div>
-                    {results.map((result) => {
-                        return <div className='ml-auto mr-auto h-10 bg-white w-[40%] truncate'>{result?.username || result?.text}</div>
+                <div className='ml-auto mr-auto w-[40%]'>
+                    {results.map((result, key) => {
+                        if (key<10) 
+                            return <button 
+                                className='h-10 bg-white w-full truncate pt-1 pl-4 pr-4 hover:bg-gray-200 cursor-pointer text-left'
+                                onClick={()=>{result?.username ? navigate(`/profile/${result._id}`): navigate(`/scoreboard/${result.createdAt.split("T")[0]}`)}}>
+                                {result?.username || result?.text}
+                            </button>
                     })}
+                    {results.length==0 ? <div className='h-10 bg-white w-full truncate pt-2 pl-4 pr-4 hover:bg-gray-200 cursor-pointer text-left'>
+                        No results found...
+                    </div>: <></>}
                 </div>
             </div>
         </div>
