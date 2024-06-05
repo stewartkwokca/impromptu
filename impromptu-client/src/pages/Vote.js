@@ -9,8 +9,6 @@ const Vote = ({user}) => {
     const [feed, setFeed] = useState([]);
     const [prompt, setPrompt] = useState("");
     const [index, setIndex] = useState(0);
-    const responded = useRef(false);
-    const [displayMessage, setDisplayMessage] = useState(false)
     const [username, setUsername] = useState("Loading user...");
     const [funnyLine, setFunny] = useState("Loading funny response...");
     const [respID, setRespID] = useState();
@@ -38,12 +36,6 @@ const Vote = ({user}) => {
     }
     function sendVote(){
 
-        if (!responded.current){
-            setDisplayMessage(true)
-            return
-        }
-        responded.current = false
-        setDisplayMessage(false)
         setIndex(index + 1)
         //console.log("Here is the requestL ")
         // console.log({response_id: respID, votes: votes.current})
@@ -76,9 +68,6 @@ const Vote = ({user}) => {
     const SliderComponent = () => {
         const [value, setValue] = useState(5);
         const handleChange = (event) => {
-            if (!responded.current){
-                responded.current = true
-            }
             setValue(event.target.value);
             votes.current = event.target.value
         };
@@ -112,7 +101,6 @@ const Vote = ({user}) => {
             < SliderComponent/>
             <button class=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick = {sendVote} type="button">Vote!</button>
             </div>
-            {displayMessage && <h3>Please adjust the rating.</h3>}
             </div>
         )
     }
