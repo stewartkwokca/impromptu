@@ -60,8 +60,8 @@ const Prompt = ({user}) => {
     return (
         <div className="center">
             <div className="place-content-center">
-                <h1 className="text-2xl font-bold text-center mb-4">Prompt</h1>
-                <p className="text-lg text-center mb-3">{prompt}</p>
+                <h1 className="text-4xl font-bold text-center mb-6">Prompt</h1>
+                <p className="text-2xl text-center mb-5">{prompt}</p>
             </div>
             { user && <div style={{ position: "relative" }} className="px-10">
                 <textarea
@@ -79,7 +79,7 @@ const Prompt = ({user}) => {
                     border: 2px solid #787777; /* Border style */
                     background-color: rgb(212, 220, 220);
                     border-radius: 4px; /* Slightly rounded corners */
-                    font-size: 1rem; /* Ensure consistent text size */
+                    font-size: 2rem; /* Ensure consistent text size */
                     text-align: left;
                     color: rgb(51, 65, 85);
                   }

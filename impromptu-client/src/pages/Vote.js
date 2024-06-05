@@ -119,8 +119,8 @@ const Vote = ({user}) => {
 
     return (
         <div>
-            <h1 className="text-2xl font-bold text-center mb-4"> Vote! </h1>
-            <p className="text-lg text-center mb-3">{prompt}</p>
+            <h1 className="text-4xl font-bold text-center mb-6">Vote!</h1>
+                <p className="text-2xl text-center mb-5">{prompt}</p>
             {user && <DisplayResponse content={feed[index]}/>}
             {!user && <div className="flex justify-center items-center mb-3"><div className="w-full max-w-md p-8 rounded-lg shadow-md text-center bg-red-500"><h2 className="text-lg text-center font-bold text-white">Please <a href="/login" className="text-blue-300 underline">sign in</a> to vote for others' responses!</h2></div></div>}
         </div>

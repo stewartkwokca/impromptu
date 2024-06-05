@@ -37,8 +37,8 @@ const Scoreboard = ({user}) => {
     return (
         <div className="center">
             <div className="place-content-center">
-                <h1 className="text-2xl font-bold text-center mb-4">Scoreboard</h1>
-                <p className="text-lg text-center mb-10">{prompt}</p>
+            <h1 className="text-4xl font-bold text-center mb-6">Scoreboard</h1>
+                <p className="text-2xl text-center mb-5">{prompt}</p>
             </div>
             <div className="mx-20 grid grid-cols-1 gap-4 flex p-5">
                 {renderItems}
