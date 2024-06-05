@@ -18,7 +18,6 @@ const Vote = ({user}) => {
 
     function getResponses() {
         axios.get(`${api_url}/feed`, {withCredentials: true}).then((res, err) => {
-            // console.log(res)
             if ("error" in res.data) {
                 setFeed([]);
                 if (res.data["error"]=="no more responses") {
@@ -69,6 +68,7 @@ const Vote = ({user}) => {
             setFunny(feed[index].response);
             setRespID(feed[index]._id)
             votes.current = 5;
+            setMorePosts(true);
         }
         else {
             setMorePosts(false);
