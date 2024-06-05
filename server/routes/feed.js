@@ -26,7 +26,7 @@ router.get("/", async (req, res) => {
     }
     voted = user.responsesVoted || [];
     console.log(voted);
-    let responses = await Response.find({"createdAt": {$gte: date}, "_id": {$nin: voted}, "userID": {$not: req.session.userID}});
+    let responses = await Response.find({"createdAt": {$gte: date}, "_id": {$nin: voted}, "userID": {$ne: req.session.userID}});
     if (responses.length==0) responses = ["You've viewed all posts for today!"];
     res.send(responses);
     return;
