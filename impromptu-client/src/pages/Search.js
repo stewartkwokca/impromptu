@@ -8,7 +8,7 @@ const api_url = "http://localhost:8000";
 const Search= () => {
     const [query, setQuery] = useState('');
     const [results, setResults] = useState([{"username": "chimney"}, {"username": "stewie"}, {"username": "abcdefg"}]);
-    const [queryType, setQueryType] = useState('prompts');
+    const [queryType, setQueryType] = useState('users');
     const navigate = useNavigate();
 
     const options = ["Users", "Prompts"];
