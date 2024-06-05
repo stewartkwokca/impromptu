@@ -32,8 +32,8 @@ function Login({user, setUser}) {
 function SignUpThankYouPage({ username }) {
     return (
       <div className="flex justify-center items-center h-screen">
-        <div className="w-full max-w-md p-8 rounded-lg shadow-md text-center">
-          <h2 className="text-2xl font-bold mb-6">Thank you for signing up {username}, welcome to Impromptu</h2>
+        <div className="w-full max-w-md p-8 bg-blue-300 rounded-lg shadow-md text-center">
+          <h2 className="text-2xl font-bold mb-6">Thank you for signing up {username}, welcome to imPROMPTu</h2>
           <Link to="/prompt">
           <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
             start playing!
