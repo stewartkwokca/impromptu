@@ -18,4 +18,16 @@ router.post("/prompts", async (req, res) => {
     return;
 })
 
+router.post("/dates", async(req, res) => {
+    const date = req.body.date.split('-');
+    const dateObj = new Date(`${date[0]},${date[1]},${date[2]}`);
+    const tmrw = new Date(`${date[0]},${date[1]},${date[2]}`);
+    tmrw.setDate(dateObj.getDate()+1);
+    const prompt = await Prompt.findOne({"createdAt": {$gte: dateObj, $lte: tmrw}}, {_id: 0, text: 1});
+    console.log(prompt);
+    if (!prompt) res.send({"error": "no prompt for that day"});
+    else res.send(prompt);
+    return;
+})
+
 module.exports = router;
