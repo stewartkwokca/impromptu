@@ -31,7 +31,7 @@ To run Impromptu locally, follow these steps:
 
 1. Clone the repository:
    ```bash
-   git clone [https://github.com/yourusername/impromptu.git](https://github.com/stewartkwokca/impromptu.git)
+   git clone https://github.com/stewartkwokca/impromptu.git
    ```
 2. Navigate into impromptu:
    ```bash
