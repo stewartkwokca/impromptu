@@ -36,7 +36,9 @@ function App(){
           <Route index element={<MainPage />}/>
           <Route path="vote" element={<Vote user={user}/>}/>
           <Route path="prompt" element={<Prompt user={user}/>} />
-          <Route path="scoreboard" element={<Scoreboard user={user}/>} />
+          <Route path="scoreboard" element={<Scoreboard user={user}/>}>
+            <Route path=":dateParam"></Route>
+          </Route>
           <Route path="history" element={<History user={user} />} />
           <Route path="search" element={<Search/>} />
         </Route>

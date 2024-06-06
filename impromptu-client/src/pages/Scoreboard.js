@@ -1,43 +1,36 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { FaArrowCircleLeft, FaArrowCircleRight } from "react-icons/fa";
+import { useParams } from 'react-router-dom';
 
 const api_url = "http://localhost:8000";
 
 const Scoreboard = ({user}) => {
-
+    const {dateParam} = useParams();
     const [tops, setTops] = useState([]);
     const [prompt, setPrompt] = useState("");
     const [date, setDate] = useState("");
 
     useEffect (() => {
-        setDate(new Date().toDateString());
+        let newDate = new Date();
+        if (dateParam) {
+            const parsed = dateParam.split('-');
+            const paramDate = new Date(parseInt(parsed[0]), parseInt(parsed[1]-1), parseInt(parsed[2]));
+            if (paramDate.toDateString()!=="Invalid Date") newDate = paramDate;
+        }
+        console.log(newDate.toDateString());
+        setDate(newDate.toDateString());
+        updatePrompt(newDate);
+        updateTops(newDate);
     }, []);
 
-    useEffect(() => {
-        axios.get(`${api_url}/prompt`).then((res, err) => {
-            // console.log(res);
-            setPrompt(res.data.text);
-        }).catch((err) => {
-                console.log(err);
-            })
-    }, [])
-
-    useEffect(() => {
-        axios.get(`${api_url}/scoreboard`).then((res, err) => {
-            // console.log(res);
-            setTops(res.data.responses);
-        }).catch((err) => {
-                console.log(err);
-            })
-    }, [])
 
     function updateTops(newDate) {
         axios.get(`${api_url}/scoreboard/${newDate.getFullYear()}-${newDate.getMonth()+1}-${newDate.getDate()}`).then((res, err) => {
             setTops(res.data.responses);
         }).catch((err) => {
-                console.log(err);
-            })
+            console.log(err);
+        })
     }
 
     function updatePrompt(newDate) {
@@ -45,8 +38,8 @@ const Scoreboard = ({user}) => {
             setPrompt(res.data.text);
             console.log(res.data.text);
         }).catch((err) => {
-                console.log(err);
-            })
+            console.log(err);
+        })
     }
 
     const handlePreviousDateClick = () => {
