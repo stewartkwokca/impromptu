@@ -25,6 +25,32 @@ Impromptu is a fun and engaging platform where users respond to the "Question of
 
 To get to Impromptu, go to: peggert.me (to be changed)
 
+## Set Up Locally
+
+To run Impromptu locally, follow these steps:
+
+1. Clone the repository:
+   ```bash
+   git clone [https://github.com/yourusername/impromptu.git](https://github.com/stewartkwokca/impromptu.git)
+   ```
+2. Navigate into impromptu:
+   ```bash
+   cd impromptu
+   ```
+3. Start up the server:
+   ```bash
+   cd server
+   node app.js
+   ```
+4. Start up the front-end:
+   ```bash
+   cd ../impromptu-client
+   npm install
+   npm run
+   ```
+Then, you should be able to see the impromptu webpage at http://localhost:3000.
+
+
 ## Feedback and Support
 
 We'd love to hear from you! If you have any feedback or need support, please reach out to any of these emails: (list our emails here later)
