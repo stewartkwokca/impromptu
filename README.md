@@ -41,7 +41,9 @@ Happy responding!
 
 ---
 
-![Impromptu Logo](impromptu-client/src/pages/impromptu-icon.png)
+<p align="center">
+  <img src="impromptu-client/src/pages/impromptu-icon.png" alt="Impromptu Logo" />
+</p
 
 ---
 
