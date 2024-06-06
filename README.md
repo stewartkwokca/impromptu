@@ -10,15 +10,15 @@ Impromptu is a fun and engaging platform where users respond to the "Question of
 
 - **Daily Questions**: Every day brings a new and exciting question to spark your imagination. No two questions are the same, so you'll always have something fresh to ponder.
 - **Submit Responses**: Let your creativity shine by submitting your unique answers to the daily question. There's no right or wrong answer—just have fun!
-- **Rate Responses**: Browse and rate other players' responses. Give a thumbs up to the ones that make you laugh, think, or say "Wow!"
+- **Rate Responses**: Browse and rate other players' responses. Give a high rating to the ones that make you laugh, think, or say "Wow!"
 - **Leaderboard**: Check out the leaderboard to see who’s leading the pack with the most popular responses. Can you climb to the top?
 
 ## Getting Started
 
 1. **Sign Up**: Create an account to start participating in the fun.
-2. **Check the Daily Question**: Head to the homepage to see the current Question of the Day.
+2. **Check the Daily Question**: Head to the prompt page to see the current Question of the Day.
 3. **Submit Your Response**: Type out your answer and submit it for others to see.
-4. **Rate Other Responses**: Read through other players’ submissions and rate your favorites.
+4. **Rate Other Responses**: Read through other players’ submissions on the vote page and rate your favorites.
 5. **Watch the Leaderboard**: See where you stand among the top wits of Impromptu!
 
 ## Link
