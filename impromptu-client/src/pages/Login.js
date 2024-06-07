@@ -64,8 +64,12 @@ function LoginPrompt({handleLogin, passUsername, setUser}){
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
+  
   const [errMessage, setErrMessage] = useState('');
   const [displayErr, setDisplayErr] = useState(false);
+
+  const [passwordErr, setPasswordErr] = useState('');
+  const [displayPasswordErr, setDisplayPasswordErr] = useState(false);
 
   const resetFields = () => {
     setEmail('')
@@ -73,6 +77,7 @@ function LoginPrompt({handleLogin, passUsername, setUser}){
     setUsername('')
     setErrMessage('')
     setDisplayErr(false)
+    setDisplayPasswordErr(false);
   }
 
   const handleSubmit = (e) => {
@@ -87,11 +92,30 @@ function LoginPrompt({handleLogin, passUsername, setUser}){
         passUsername(username)
       }).catch((err) => {
         console.log(err);
-        setErrMessage(err.response.data["error"])
+        const error = err.response.data["error"];
+        console.log(error);
+        if (error=="incorrect password") {
+          setPasswordErr(error);
+          setDisplayPasswordErr(true);
+          return;
+        }
+        setErrMessage(error)
         setDisplayErr(true)
       })
     } else {
       // Handle account creation
+      if (username.length>10) {
+        console.log("username too long");
+        setErrMessage("Username must be no longer than 10 characters.");
+        setDisplayErr(true);
+        return;
+      }
+      if (password.length<7) {
+        setPasswordErr("Password must be 7 characters or more.");
+        setDisplayPasswordErr(true);
+        setDisplayErr(false);
+        return;
+      }
       const creds = {email, username, password }
       // console.log('Creating account with', creds);
       axios.post(`${api_url}/signup`, creds, {withCredentials: true}).then((res, err) => {
@@ -100,8 +124,9 @@ function LoginPrompt({handleLogin, passUsername, setUser}){
         setUser(res.data.user);
         passUsername(username)
       }).catch((err) => {
-        console.log(err);
-        setErrMessage(err.response.data["error"])
+        const error = err.response.data["error"];
+        
+        setErrMessage(error)
         setDisplayErr(true)
       })
     }
@@ -114,7 +139,7 @@ function LoginPrompt({handleLogin, passUsername, setUser}){
           {isLogin ? 'Log In' : 'Create Account'}
         </h2>
         <form onSubmit={handleSubmit}>
-            <div className="mb-4">
+            <div className="mb-2">
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
                 Username
               </label>
@@ -129,7 +154,7 @@ function LoginPrompt({handleLogin, passUsername, setUser}){
               />
             </div>
         {displayErr && (
-            <p class="text-red-500 text-s">{errMessage}</p>
+            <p class="text-red-500 text-s mb-2">{errMessage}</p>
         )}
         {!isLogin && (
           <div className="mb-4">
@@ -146,7 +171,7 @@ function LoginPrompt({handleLogin, passUsername, setUser}){
             />
           </div>
           )}
-          <div className="mb-6">
+          <div className="mb-2">
             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
               Password
             </label>
@@ -159,6 +184,9 @@ function LoginPrompt({handleLogin, passUsername, setUser}){
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
           </div>
+          {displayPasswordErr && (
+            <p class="text-red-500 text-s mb-2">{passwordErr}</p>
+          )}
           <div>
           </div>
           <div className="flex items-center justify-between">
