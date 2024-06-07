@@ -44,6 +44,11 @@ const Scoreboard = ({user}) => {
 
     const handlePreviousDateClick = () => {
         const newDate = new Date(Date.parse(date));
+
+        if (newDate.toDateString() == new Date(2024, 5, 4).toDateString()){
+            return;
+        }
+
         newDate.setDate(newDate.getDate()-1);
         setDate(newDate.toDateString());
 
