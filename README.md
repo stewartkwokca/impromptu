@@ -53,7 +53,7 @@ Then, you should be able to see the impromptu webpage at http://localhost:3000.
 
 ## Feedback and Support
 
-We'd love to hear from you! If you have any feedback or need support, please reach out to any of these emails: (list our emails here later)
+We don't want to hear from you! If you have any feedback or need support, please keep it to yourself.
 
 ## Acknowledgements
 
@@ -73,4 +73,4 @@ Happy responding!
 
 ---
 
-*This README was generated with ❤️ by the Impromptu team.*
+*This README was generated with ❤️ by the Impromptu team: stewartkwokca (Stewart Kwok), cdevadhar (Chinmay Devadhar), JakeYoung271 (Jake Young), szxp0422 (Steven Pan), riverofspring (Kevin Zhao).*
