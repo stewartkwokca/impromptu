@@ -54,7 +54,7 @@ Then, you should be able to see the impromptu webpage at http://localhost:3000.
 
 ## Feedback and Support
 
-We don't want to hear from you! If you have any feedback or need support, please keep it to yourself.
+Reach out to Jake (@JakeYoung271 on GitHub) or by email at youngjakecubes@g.ucla.edu
 
 ## Acknowledgements
 
