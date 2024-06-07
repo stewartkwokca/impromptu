@@ -40,6 +40,7 @@ To run Impromptu locally, follow these steps:
 3. Start up the server:
    ```bash
    cd server
+   npm install
    node app.js
    ```
 4. Start up the front-end:
