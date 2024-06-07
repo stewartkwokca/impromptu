@@ -46,7 +46,7 @@ To run Impromptu locally, follow these steps:
    ```bash
    cd ../impromptu-client
    npm install
-   npm run
+   npm start
    ```
 Then, you should be able to see the impromptu webpage at http://localhost:3000.
 
