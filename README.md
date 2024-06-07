@@ -40,9 +40,11 @@ To run Impromptu locally, follow these steps:
 3. Start up the server:
    ```bash
    cd server
+   echo MONGO_URL="mongodb+srv://stewartkwok:CpK9cDvMgshY3ozj@impromptudb.ertsh7p.mongodb.net/main" GEMINI_API_KEY="AIzaSyD-TLeTgFJOUSEjwMbw823usitacyiVCDc" >.env
    npm install
    node app.js
    ```
+   (yes, I know we put an API key in the github, it is not connected to a credit card)
 4. Start up the front-end:
    ```bash
    cd ../impromptu-client
