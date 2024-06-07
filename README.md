@@ -21,10 +21,6 @@ Impromptu is a fun and engaging platform where users respond to the "Question of
 4. **Rate Other Responses**: Read through other players’ submissions on the vote page and rate your favorites.
 5. **Watch the Leaderboard**: See where you stand among the top wits of Impromptu!
 
-//## Link
-
-//To get to Impromptu, go to: peggert.me (to be changed)
-
 ## Set Up Locally
 
 To run Impromptu locally, follow these steps:
