@@ -42,9 +42,8 @@ To run Impromptu locally, follow these steps:
    node app.js
    ```
    (yes, I know we put an API key in the github, it is not connected to a credit card)
-4. Start up the front-end:
+4. Start up the front-end. In impromptu/impromptu-client,
    ```bash
-   cd ../impromptu-client
    npm install
    npm start
    ```
